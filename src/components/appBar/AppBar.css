@@ -1,0 +1,37 @@
+/* src/components/AppBar.css */
+
+.app-bar {
+    width: 98%;
+    background: #222;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-self: center;
+    margin-bottom: 5px;
+}
+
+.app-bar button {
+    background: none;
+    border: none;
+    color: #fff;
+    display: flex;
+    align-items: center;
+}
+
+/* src/App.css */
+
+.resume-button {
+    margin: 20px 0;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff; /* Bootstrap primary color */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.app-bar button:hover,
+.resume-button button:hover {
+    background-color: #007bff; /* Darker shade on hover */
+}

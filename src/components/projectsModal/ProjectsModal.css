@@ -1,0 +1,11 @@
+/* src/components/ProjectsModal.css */
+
+.project-thumbnail {
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.project-thumbnail .project-title {
+    margin-top: 10px;
+    font-weight: bold;
+}

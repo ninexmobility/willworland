@@ -1,0 +1,39 @@
+/* src/components/StatusBar.css */
+
+.status-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 18px;
+    height: 20px;
+    background: transparent;
+    color: #ffffff;
+    font-size: 12px;
+    margin-top: 5px;
+}
+
+.status-left,
+.status-center,
+.status-right {
+    display: flex;
+    align-items: center;
+}
+
+.status-left svg,
+.status-right svg {
+    margin-left: 10px;
+}
+
+.status-center {
+    flex-grow: 1;
+    justify-content: center;
+}
+
+.status-right span {
+    margin-right: 10px;
+}
+
+.status-bar svg {
+    /* Adjust icon color */
+    color: #ffffff;
+}

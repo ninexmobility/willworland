@@ -1,0 +1,35 @@
+#root {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+}
+
+.app-content {
+    flex: 1; /* Allow the content to grow and fill available space */
+    overflow-y: auto; /* Enable scrolling if content overflows */
+    display: flex;
+    flex-direction: column;
+}
+
+/* src/App.css */
+
+.app-container {
+    text-align: center;
+}
+
+.orientation-button {
+    margin: 20px auto;
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.orientation-button:hover {
+    background-color: #0056b3;
+}

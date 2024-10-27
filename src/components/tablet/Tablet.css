@@ -1,0 +1,67 @@
+/* src/components/Tablet.css */
+
+/* Common styles for tablet-frame */
+.tablet-frame {
+    background: #000;
+    border-radius: 50px;
+    position: relative;
+    margin: 20px auto;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+/* Portrait Mode */
+.tablet-frame.portrait {
+    width: 90vw;
+    height: calc(90vw * (1024 / 768)); /* Maintain aspect ratio */
+    max-width: 768px;
+    max-height: 1024px;
+}
+
+/* Landscape Mode */
+.tablet-frame.landscape {
+    width: 90vw;
+    height: calc(90vw * (768 / 1024)); /* Adjusted aspect ratio */
+    max-width: 1024px;
+    max-height: 768px;
+}
+
+/* Common styles for tablet-screen */
+.tablet-frame .tablet-screen {
+    width: calc(100% - 40px);
+    height: calc(100% - 80px);
+    background: #333;
+    position: absolute;
+    top: 40px;
+    left: 20px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Adjustments for Landscape Mode */
+.tablet-frame.landscape .tablet-screen {
+    width: calc(100% - 80px);
+    height: calc(100% - 40px);
+    top: 20px;
+    left: 40px;
+}
+
+/* Styles for tablet-camera */
+.tablet-frame .tablet-camera {
+    width: 10px;
+    height: 10px;
+    background: #333;
+    border-radius: 50%;
+    position: absolute;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* Adjustments for Landscape Mode */
+.tablet-frame.landscape .tablet-camera {
+    top: 50%;
+    left: auto;
+    right: 15px;
+    transform: translateY(-50%);
+}

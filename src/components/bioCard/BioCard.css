@@ -1,0 +1,30 @@
+/* src/components/BioCard.css */
+
+.bio-card {
+    max-width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    background-color: #212529 !important;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+    padding: 0.4em;
+    margin-top: 1em;
+}
+
+.bio-text {
+    color: #fff;
+    padding-top: 1em;
+}
+
+.bio-card .social-icons {
+    margin-top: 15px;
+}
+
+.bio-card .social-icons a {
+    margin-right: 10px;
+    color: #6d6d6d;
+    text-decoration: none;
+}
+
+.bio-card .social-icons a:hover {
+    color: #007bff;
+}

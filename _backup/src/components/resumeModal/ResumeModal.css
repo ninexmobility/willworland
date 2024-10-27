@@ -1,0 +1,22 @@
+/* src/components/ResumeModal.css */
+
+.resume-content {
+    max-height: 60vh;
+    overflow-y: auto;
+}
+
+.resume-content h2,
+.resume-content h3 {
+    margin-top: 20px;
+}
+
+.resume-content p,
+.resume-content li {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.resume-content ul {
+    list-style-type: disc;
+    padding-left: 20px;
+}
