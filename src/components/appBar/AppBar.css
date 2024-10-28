@@ -20,6 +20,8 @@
 
 /* src/App.css */
 
+.home-button,
+.projects-button,
 .resume-button {
     margin: 20px 0;
     padding: 10px 20px;
@@ -32,6 +34,8 @@
 }
 
 .app-bar button:hover,
+.home-button button:hover,
+.projects-button button:hover,
 .resume-button button:hover {
     background-color: #007bff; /* Darker shade on hover */
 }
