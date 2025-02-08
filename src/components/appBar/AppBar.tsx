@@ -8,6 +8,7 @@ import "./AppBar.css";
 import { FaHome } from "react-icons/fa";
 import { GrProjects } from "react-icons/gr";
 import { PiReadCvLogoFill } from "react-icons/pi";
+import { AiOutlineShoppingCart } from "react-icons/ai"; // Store icon
 import { useNavigate } from "react-router-dom";
 import ResumeModal from "../resumeModal/ResumeModal";
 import ProjectsModal from "../projectsModal/ProjectsModal";
@@ -15,8 +16,7 @@ import { projects } from "../../data/projects";
 
 /**
  * AppBar component renders the bottom navigation bar with icons for navigation.
- * It includes buttons for Home, Projects, and Resume, and handles the opening
- * and closing of the Resume and Projects modals.
+ * It includes buttons for Home, Projects, Resume, and Store, handling modal visibility.
  *
  * @component
  * @returns {React.ReactElement} The AppBar component.
@@ -57,6 +57,13 @@ const AppBar: React.FC = () => {
         setShowProjects(false);
     };
 
+    /**
+     * Navigates to the Store page.
+     */
+    const handleStoreOpen = () => {
+        navigate("/store");
+    };
+
     return (
         <div className='app-bar'>
             {/* Home button navigates to the root path */}
@@ -66,6 +73,7 @@ const AppBar: React.FC = () => {
                 aria-label='Home'>
                 <FaHome size={32} />
             </button>
+
             {/* Projects button opens the Projects modal */}
             <button
                 className='projects-button'
@@ -73,12 +81,21 @@ const AppBar: React.FC = () => {
                 aria-label='Projects'>
                 <GrProjects size={24} />
             </button>
+
             {/* Resume button opens the Resume modal */}
             <button
                 className='resume-button'
                 onClick={handleResumeOpen}
                 aria-label='Resume'>
                 <PiReadCvLogoFill size={24} />
+            </button>
+
+            {/* Store button navigates to the Store page */}
+            <button
+                className='store-button'
+                onClick={handleStoreOpen}
+                aria-label='Store'>
+                <AiOutlineShoppingCart size={24} />
             </button>
 
             {/* Resume Modal */}
