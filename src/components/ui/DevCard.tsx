@@ -71,13 +71,7 @@ export default function DevCard() {
       <Card sx={{ maxWidth: 800, margin: '0 auto' }}>
         {/* Profile Image */}
         <CardMedia>
-          <Image
-            src="/images/ninex-deadly.jpg"
-            alt="Profile Image"
-            width={800}
-            height={600}
-            style={{ objectFit: 'cover' }}
-          />
+          <Image src="/images/will.jpg" alt="Profile Image" width={800} height={600} style={{ objectFit: 'cover' }} />
         </CardMedia>
         <CardContent>
           {/* Title */}
