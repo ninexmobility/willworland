@@ -1,73 +1,55 @@
-# React + TypeScript + Vite
+# Will Worland — Personal Site
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React + Vite + TypeScript site for my resume, projects, and /uses page. Styled with MUI, state via Redux Toolkit, data fetching via TanStack Query, and deployed to Cloudflare Pages.
 
-Currently, two official plugins are available:
+## Tech Stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- React 19, TypeScript, Vite 7
+- MUI 7 (custom theme in `src/theme.ts`)
+- Redux Toolkit + React Redux
+- TanStack Query (React Query)
+- React Router v7
+- Cloudflare Pages deployment (GitHub Actions workflow)
 
-## React Compiler
+## Project Structure (high level)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- `src/data/resume.ts` — resume content (summary, experience, skills, projects, education, awards)
+- `src/data/projects.ts` and `src/data/projects/*` — project cards and detail data (e.g., HF mini toolbox)
+- `src/data/announcement.ts` — top banner message/link toggles
+- `src/pages` — route-level pages (`Home`, `Projects`, `ProjectDetail`, `Uses`)
+- `src/components` — shared UI (header/footer/banner/resume sections)
+- `src/store` — Redux store, preferences slice (light/dark mode)
+- `src/theme.ts` — MUI theme (palette/typography/radius overrides)
+- `public/` — static assets (including optimized gallery images)
 
-## Expanding the ESLint configuration
+## Getting Started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev    # start Vite dev server
+npm run lint   # static checks
+npm run build  # production build
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Deployment (Cloudflare Pages)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Workflow: `.github/workflows/deploy.yml`
+- Build command: `npm run build`
+- Output directory: `dist`
+- Secrets required in GitHub repo:
+  - `CLOUDFLARE_API_TOKEN`
+  - `CLOUDFLARE_ACCOUNT_ID`
+  - `GITHUB_TOKEN` (provided by Actions)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+Push to `main` triggers build + deploy to the `willworland` Pages project.
+
+## Content & Customization
+
+- Resume: edit `src/data/resume.ts`
+- Projects: edit `src/data/projects.ts` (+ detail files under `src/data/projects/`)
+- Gallery assets: place optimized images in `public/hf-toolbox` (already optimized via `sips`)
+- Announcement banner: toggle/message/link in `src/data/announcement.ts`
+- Theme: update `src/theme.ts` for colors, typography, radius
+- Routing: see `src/main.tsx` (`/`, `/projects`, `/projects/:slug`, `/uses`)
+
+---
