@@ -1,28 +1,13 @@
-import cache from "@opennextjs/cloudflare/kvCache";
+// open-next.config.ts (or .js with ESM)
+import { defineCloudflareConfig } from '@opennextjs/cloudflare';
+import staticAssetsIncrementalCache from '@opennextjs/cloudflare/overrides/incremental-cache/static-assets-incremental-cache';
 
-const config = {
-  default: {
-    override: {
-      wrapper: "cloudflare-node",
-      converter: "edge",
-      incrementalCache: async () => cache,
-      tagCache: "dummy",
-      queue: "dummy",
-    },
-  },
-
-  middleware: {
-    external: true,
-    override: {
-      wrapper: "cloudflare-edge",
-      converter: "edge",
-      proxyExternalRequest: "fetch",
-    },
-  },
-
-  dangerous: {
-    enableCacheInterception: false,
-  },
-};
-
-export default config;
+/**
+ * SSG-only: no Queue, no Tag Cache.
+ * Uses Workers Static Assets as a read-only incremental cache
+ * and enables cache interception for faster hits.
+ */
+export default defineCloudflareConfig({
+  incrementalCache: staticAssetsIncrementalCache,
+  enableCacheInterception: true,
+});

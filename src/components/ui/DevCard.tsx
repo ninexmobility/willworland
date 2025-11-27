@@ -31,6 +31,7 @@ import {
   LinkedinIcon,
   EmailIcon,
 } from 'react-share';
+import WifeArtLink from './WifeArtLink';
 
 /**
  * DevCard Component
@@ -61,6 +62,7 @@ export default function DevCard() {
   ];
 
   // Details used for sharing via react-share
+  const izUrl = 'https://neuronomadstudios.com';
   const shareUrl = 'https://willworland.com';
   const shareTitle = "Will 'ninex' Worland - Sr. Hybrid Engineer";
   const shareText =
@@ -69,15 +71,10 @@ export default function DevCard() {
   return (
     <Container sx={{ padding: 2 }}>
       <Card sx={{ maxWidth: 800, margin: '0 auto' }}>
+        <WifeArtLink href={izUrl} />
         {/* Profile Image */}
         <CardMedia>
-          <Image
-            src="/images/ninex-deadly.jpg"
-            alt="Profile Image"
-            width={800}
-            height={600}
-            style={{ objectFit: 'cover' }}
-          />
+          <Image src="/images/will.jpg" alt="Profile Image" width={800} height={600} style={{ objectFit: 'cover' }} />
         </CardMedia>
         <CardContent>
           {/* Title */}
