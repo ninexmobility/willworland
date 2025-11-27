@@ -25,7 +25,7 @@ export default function Footer() {
             © {currentYear} Will Worland
           </Typography>
           <Button
-            href="/resume.pdf"
+            href="/will-worland.pdf"
             download
             variant="text"
             color="primary"
