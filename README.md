@@ -53,3 +53,5 @@ Push to `main` triggers build + deploy to the `willworland` Pages project.
 - Routing: see `src/main.tsx` (`/`, `/projects`, `/projects/:slug`, `/uses`)
 
 ---
+
+@2025 - NineXmobility
