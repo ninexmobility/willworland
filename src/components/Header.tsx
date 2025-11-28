@@ -74,6 +74,16 @@ export default function Header() {
           >
             Projects
           </Button>
+          <Button
+            component="a"
+            href="https://shop.willworland.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            color="inherit"
+            sx={{ textTransform: "none", fontWeight: 600 }}
+          >
+            Shop
+          </Button>
           <SocialLinks />
           <Tooltip title={`Switch to ${mode === "light" ? "dark" : "light"} mode`}>
             <IconButton
