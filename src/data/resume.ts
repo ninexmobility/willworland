@@ -85,31 +85,33 @@ export const resume: Resume = {
       title: "Additional Mobility / IT Roles (selected)",
       items: [
         {
-          heading: "Ascent Services Group → Albertsons/Safeway",
-          meta: "2019 (NorCal)",
+          heading:
+            "Ascent Services Group → Albertsons/Safeway / Consulting Engineer",
+          meta: "2019 (Bay Area, CA)",
           description:
             "Implemented Avalanche MDM with Zebra TC51s; built deployment/management plans and coordinated POS app rollout.",
         },
         {
-          heading: "Liquid Environmental Solutions",
+          heading: "Liquid Environmental Solutions, Fleet EMM Engineer",
           meta: "2016 (Dallas, TX)",
           description:
             "Led first PeopleNet ↔ SOTI MobiControl integration; authored runbook and coordinated service-network rollout.",
         },
         {
-          heading: "Copart",
+          heading: "Copart, Mobility Engineer",
           meta: "2014 (Dallas, TX)",
           description:
             "Scoped global mobility initiative; evaluated devices, platforms, and WLAN upgrades; vendor management.",
         },
         {
-          heading: "Enterprise Mobile",
+          heading: "Enterprise Mobile, Mobility Consultant",
           meta: "2010 – 2014 (Plano, TX)",
           description:
             "Administered AirWatch/MobileIron/SOTI/BES; designed profiles/policies; managed app signing; built knowledge systems.",
         },
         {
-          heading: "Samsung Mobile",
+          heading:
+            "Samsung Mobile, Contact Center Operations, Technical Trainer",
           meta: "1998 – 2006 (Plano, TX)",
           description:
             "Delivered technical training, authored policies/procedures, and managed contact-center IT projects (LMS, portals, reporting).",
