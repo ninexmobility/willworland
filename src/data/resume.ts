@@ -36,13 +36,12 @@ export const resume: Resume = {
         {
           heading: "Engineer III, Software",
           subheading: "Enterprise Mobility — Solutions Engineering",
-          meta: "Feb 2024 – Present • St. Louis, MO (remote/Sacramento)",
+          meta: "Feb 2024 – Present • St. Louis, MO (remote/Sacramento, CA)",
           description:
             "Deliver internal automation initiatives and workplace engineering solutions end-to-end, owning scope, milestones, and cross-team integration.",
           bullets: [
-            "Product-manage and engineer a secure Android lockdown launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
+            "Product-manage and engineer a secure Android 'MobiControl' `lockdown` launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
             "Build and maintain a CI/CD application packaging pipeline for repeatable app deployments, integrating EMM/MDM APIs, artifact versioning, test gates, and rollout orchestration.",
-            "Act as Android Enterprise SME: evaluate devices/OS updates, coordinate security patch cycles, and advise on Managed Google Play, provisioning flows, and compliance posture.",
             "Lead process improvements, write design/ops documentation, and publish structured status updates, risks, and mitigations; mentor engineers and champion documentation quality.",
             "Impact: Reduced deployment timelines and strengthened Android fleet reliability through policy hardening and lifecycle automation.",
           ],
@@ -50,22 +49,23 @@ export const resume: Resume = {
         {
           heading: "Engineer III, Systems",
           subheading: "Enterprise Mobility — Mobility Engineering",
-          meta: "Apr 2019 – Feb 2024 • St. Louis, MO (remote/Sacramento)",
+          meta: "Apr 2019 – Feb 2024 • St. Louis, MO & (remote/Sacramento, CA)",
           description:
             "Field technology engineer focused on mobility platform reliability and rugged Android experiences.",
           bullets: [
-            "Owned Android lockdown launcher releases, policy hardening, and support enablement.",
+            "Owned Android lockdown launcher development, releases, policy hardening, and support enablement.",
+            "Act as Android Enterprise SME: evaluate devices/OS updates, coordinate security patch cycles, and advise on Managed Google Play, provisioning flows, and compliance posture.",
             "Coordinated device evaluations, security patch cycles, and compliance posture across teams.",
           ],
         },
         {
-          heading: "Client Platform Engineer II",
+          heading: " Engineer II, Systems",
           subheading: "Uber — Client Platform Engineering",
           meta: "Aug 2017 – Jan 2019 • San Francisco, CA",
           bullets: [
             "Owned architecture, upgrades, and deployment processes for VMware AirWatch.",
             "Administered zero-touch enrollment and provisioning workflows for corporate mobile devices.",
-            "Built automation and reporting using Python APIs to measure adoption, compliance, and release readiness.",
+            "Designed and implemented BYOD program, compliance and deployment.",
             "Coordinated with cross-platform teams to ensure consistent device posture.",
           ],
         },
