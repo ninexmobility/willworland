@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(git checkout:*)",
+      "Bash(git remote:*)",
+      "WebSearch",
+      "WebFetch(domain:unsplash.com)",
+      "WebFetch(domain:phenox.net)",
+      "WebFetch(domain:closer.ac.uk)",
+      "WebFetch(domain:www.ncub.co.uk)",
+      "WebFetch(domain:sacramentojournalismnetwork.net)",
+      "WebFetch(domain:infocusfilmschool.com)",
+      "WebFetch(domain:nowskills.co.uk)",
+      "WebFetch(domain:medium.com)",
+      "WebFetch(domain:api.unsplash.com)",
+      "WebFetch(domain:digitscotland.com)",
+      "Bash(npm audit:*)",
+      "Bash(source ~/.nvm/nvm.sh)"
+    ]
+  }
+}
