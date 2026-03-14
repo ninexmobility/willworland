@@ -9,6 +9,8 @@ import Home from "./pages/Home";
 import Uses from "./pages/Uses";
 import Projects from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 import { store } from "./store/store";
 import { useAppSelector } from "./store/hooks";
 import { createAppTheme } from "./theme";
@@ -40,6 +42,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
                 <Route path="uses" element={<Uses />} />
                 <Route path="projects" element={<Projects />} />
                 <Route path="projects/:slug" element={<ProjectDetail />} />
+                <Route path="blog" element={<Blog />} />
+                <Route path="blog/:slug" element={<BlogPost />} />
               </Route>
             </Routes>
           </BrowserRouter>

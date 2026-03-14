@@ -75,6 +75,14 @@ export default function Header() {
             Projects
           </Button>
           <Button
+            component={RouterLink}
+            to="/blog"
+            color={isActive("/blog") ? "primary" : "inherit"}
+            sx={{ textTransform: "none", fontWeight: 600 }}
+          >
+            Blog
+          </Button>
+          <Button
             component="a"
             href="https://shop.willworland.com"
             target="_blank"
