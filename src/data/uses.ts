@@ -110,12 +110,8 @@ export const usesData: UsesCategory[] = [
         description: "Personal Windows machine for gaming and testing.",
       },
       {
-        name: "Apple MacBook Pro M3 Max (Work)",
-        description: "Primary work laptop.",
-      },
-      {
-        name: "Dell (Core i9) (Work)",
-        description: "Work Windows machine for enterprise tooling.",
+        name: "IBM ThinkPad X13 / Windows 11 Pro (Field)",
+        description: "Field laptop for on-site work and enterprise tooling.",
       },
     ],
   },
