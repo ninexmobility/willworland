@@ -14,7 +14,8 @@ import { posts } from "../data/posts";
 export default function Blog() {
   const { data = posts } = useQuery({
     queryKey: ["posts"],
-    queryFn: async () => posts,
+    queryFn: async () =>
+      [...posts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()),
     staleTime: Infinity,
   });
 
