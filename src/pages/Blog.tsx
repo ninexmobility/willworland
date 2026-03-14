@@ -34,41 +34,56 @@ export default function Blog() {
         {data.map((post) => (
           <Card key={post.slug} variant="outlined">
             <CardActionArea onClick={() => navigate(`/blog/${post.slug}`)}>
-              <CardContent>
-                <Stack spacing={1}>
-                  <Stack
-                    direction="row"
-                    justifyContent="space-between"
-                    alignItems="flex-start"
-                    spacing={1}
-                  >
-                    <Typography variant="h6" component="h2">
-                      {post.title}
-                    </Typography>
-                    <Typography
-                      variant="caption"
-                      color="text.secondary"
-                      sx={{ whiteSpace: "nowrap" }}
+              <Stack direction={{ xs: "column", sm: "row" }}>
+                {post.image && (
+                  <Box
+                    component="img"
+                    src={post.image}
+                    alt={post.imageAlt ?? post.title}
+                    sx={{
+                      width: { xs: "100%", sm: 200 },
+                      height: { xs: 160, sm: "auto" },
+                      objectFit: "cover",
+                      flexShrink: 0,
+                    }}
+                  />
+                )}
+                <CardContent sx={{ flex: 1 }}>
+                  <Stack spacing={1}>
+                    <Stack
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="flex-start"
+                      spacing={1}
                     >
-                      {new Date(post.date).toLocaleDateString("en-US", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      <Typography variant="h6" component="h2">
+                        {post.title}
+                      </Typography>
+                      <Typography
+                        variant="caption"
+                        color="text.secondary"
+                        sx={{ whiteSpace: "nowrap" }}
+                      >
+                        {new Date(post.date).toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </Typography>
+                    </Stack>
+
+                    <Typography variant="body2" color="text.secondary">
+                      {post.summary}
                     </Typography>
-                  </Stack>
 
-                  <Typography variant="body2" color="text.secondary">
-                    {post.summary}
-                  </Typography>
-
-                  <Stack direction="row" flexWrap="wrap" gap={0.75}>
-                    {post.tags.map((tag) => (
-                      <Chip key={tag} label={tag} size="small" />
-                    ))}
+                    <Stack direction="row" flexWrap="wrap" gap={0.75}>
+                      {post.tags.map((tag) => (
+                        <Chip key={tag} label={tag} size="small" />
+                      ))}
+                    </Stack>
                   </Stack>
-                </Stack>
-              </CardContent>
+                </CardContent>
+              </Stack>
             </CardActionArea>
           </Card>
         ))}

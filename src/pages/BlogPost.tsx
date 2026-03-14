@@ -1,5 +1,5 @@
 import { Link as RouterLink, useParams } from "react-router-dom";
-import { Box, Button, Chip, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Link, Stack, Typography } from "@mui/material";
 import { posts } from "../data/posts";
 
 export default function BlogPost() {
@@ -42,6 +42,29 @@ export default function BlogPost() {
           <Chip key={tag} label={tag} size="small" />
         ))}
       </Stack>
+
+      {post.image && (
+        <Box>
+          <Box
+            component="img"
+            src={post.image}
+            alt={post.imageAlt ?? post.title}
+            sx={{ width: "100%", maxHeight: 420, objectFit: "cover", borderRadius: 2 }}
+          />
+          {post.imageCredit && (
+            <Typography variant="caption" color="text.secondary" sx={{ display: "block", mt: 0.5 }}>
+              Photo by{" "}
+              <Link href={post.imageCredit.url} target="_blank" rel="noopener noreferrer">
+                {post.imageCredit.name}
+              </Link>{" "}
+              on{" "}
+              <Link href="https://unsplash.com" target="_blank" rel="noopener noreferrer">
+                Unsplash
+              </Link>
+            </Typography>
+          )}
+        </Box>
+      )}
 
       {post.contentHtml ? (
         <Box dangerouslySetInnerHTML={{ __html: post.contentHtml }} />

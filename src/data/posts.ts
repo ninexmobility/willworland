@@ -6,6 +6,9 @@ export interface BlogPost {
   tags: string[];
   content: string;
   contentHtml?: string;
+  image?: string;
+  imageAlt?: string;
+  imageCredit?: { name: string; url: string };
 }
 
 export const posts: BlogPost[] = [
@@ -15,6 +18,12 @@ export const posts: BlogPost[] = [
     date: "2026-03-01",
     summary: "Declarative Device Management has been the right answer since 2021. It took Apple deprecating the old model for the industry to admit it. Infrastructure engineers figured this out thirty years ago.",
     tags: ["MDM", "DDM", "Apple", "IaC"],
+    image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
+    imageAlt: "Person working on a MacBook Pro",
+    imageCredit: {
+      name: "Glenn Carstens-Peters",
+      url: "https://unsplash.com/photos/person-using-macbook-pro-npxXWgQ33ZQ",
+    },
     content: "",
     contentHtml: `<style>
   .post-body p { font-size: 16px; line-height: 1.8; margin: 0 0 1.4rem; }
@@ -114,6 +123,12 @@ export const posts: BlogPost[] = [
     date: "2026-03-13",
     summary: "The first post — a quick intro to what this blog will be about.",
     tags: ["general"],
+    image: "https://images.unsplash.com/photo-1535551951406-a19828b0a76b?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
+    imageAlt: "Hello World displayed on a screen",
+    imageCredit: {
+      name: "KOBU Agency",
+      url: "https://unsplash.com/photos/hello-world-text-67L18R4tW_w",
+    },
     content: `Welcome to the blog. I plan to use this space to write about projects I'm working on, things I'm learning, and anything else I find worth sharing.
 
 More posts coming soon.`,
