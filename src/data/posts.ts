@@ -123,11 +123,11 @@ export const posts: BlogPost[] = [
     date: "2026-03-13",
     summary: "The first post — a quick intro to what this blog will be about.",
     tags: ["general"],
-    image: "https://images.unsplash.com/photo-1575467544611-470fa8053545?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
-    imageAlt: "MacBook Pro beside a cup of coffee on a wooden desk",
+    image: "https://images.unsplash.com/flagged/1/apple-gear-looking-pretty.jpg?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
+    imageAlt: "MacBook Air beside a mug on a clean table",
     imageCredit: {
-      name: "Ochir-Erdene Oyunmedeg",
-      url: "https://unsplash.com/photos/macbook-pro-beside-cup-of-coffee-0W-gAbNoJCo",
+      name: "Alejandro Escamilla",
+      url: "https://unsplash.com/photos/macbook-air-near-mug-on-table-yC-Yzbqy7PY",
     },
     content: `Welcome to the blog. I plan to use this space to write about projects I'm working on, things I'm learning, and anything else I find worth sharing.
 
