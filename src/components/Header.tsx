@@ -53,8 +53,8 @@ export default function Header() {
         <Stack direction="row" alignItems="center" spacing={{ xs: 1, sm: 2 }}>
           <Button
             component={RouterLink}
-            to="/"
-            color={isActive("/") ? "primary" : "inherit"}
+            to="/resume"
+            color={isActive("/resume") ? "primary" : "inherit"}
             sx={{ textTransform: "none", fontWeight: 600 }}
           >
             Resume
