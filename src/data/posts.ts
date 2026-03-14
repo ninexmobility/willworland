@@ -15,7 +15,7 @@ export const posts: BlogPost[] = [
   {
     slug: "ddm-declarative-device-management",
     title: "The server is not in charge anymore. Apple just made it official.",
-    date: "2026-03-01",
+    date: "2026-03-14",
     summary: "Declarative Device Management has been the right answer since 2021. It took Apple deprecating the old model for the industry to admit it. Infrastructure engineers figured this out thirty years ago.",
     tags: ["MDM", "DDM", "Apple", "IaC"],
     image: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
@@ -120,7 +120,7 @@ export const posts: BlogPost[] = [
   {
     slug: "hello-world",
     title: "Hello, World",
-    date: "2026-03-13",
+    date: "2026-03-01",
     summary: "The first post — a quick intro to what this blog will be about.",
     tags: ["general"],
     image: "https://images.unsplash.com/flagged/1/apple-gear-looking-pretty.jpg?ixlib=rb-4.1.0&q=85&fm=jpg&crop=entropy&cs=srgb&w=1200",
