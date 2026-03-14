@@ -18,7 +18,8 @@ export default function Header() {
   const dispatch = useAppDispatch();
   const mode = useAppSelector((state) => state.preferences.mode);
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) =>
+    path === "/" ? location.pathname === path : location.pathname.startsWith(path);
 
   return (
     <AppBar position="sticky" color="transparent" elevation={0}>

@@ -43,13 +43,17 @@ export default function BlogPost() {
         ))}
       </Stack>
 
-      <Stack spacing={2}>
-        {post.content.split("\n\n").map((paragraph, i) => (
-          <Typography key={i} variant="body1">
-            {paragraph}
-          </Typography>
-        ))}
-      </Stack>
+      {post.contentHtml ? (
+        <Box dangerouslySetInnerHTML={{ __html: post.contentHtml }} />
+      ) : (
+        <Stack spacing={2}>
+          {post.content.split("\n\n").map((paragraph, i) => (
+            <Typography key={i} variant="body1">
+              {paragraph}
+            </Typography>
+          ))}
+        </Stack>
+      )}
 
       <Button component={RouterLink} to="/blog" variant="outlined" sx={{ alignSelf: "flex-start" }}>
         Back to Blog
