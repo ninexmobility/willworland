@@ -18,7 +18,7 @@ export const posts: BlogPost[] = [
     date: "2026-03-21",
     summary: "Strip away the UI and every device management platform is running the same protocols against the same OS APIs. Understanding that changes how you evaluate everything.",
     tags: ["MDM", "Architecture", "Apple", "Android", "Linux", "IoT"],
-    image: "/mdm_protocol_is_product.png",
+    image: "/one-mdm-all-mdm.png",
     imageAlt: "Protocol and platform logos across Apple, Android, Windows, Linux, and IoT — same protocols, different dashboards",
     content: "",
     contentHtml: `<style>
