@@ -13,6 +13,94 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "mdm-protocol-is-the-product",
+    title: "Once you've seen one MDM, you've seen them all.",
+    date: "2026-03-21",
+    summary: "Strip away the UI and every device management platform is running the same protocols against the same OS APIs. Understanding that changes how you evaluate everything.",
+    tags: ["MDM", "Architecture", "Apple", "Android", "Linux", "IoT"],
+    image: "/mdm_protocol_is_product.png",
+    imageAlt: "Protocol and platform logos across Apple, Android, Windows, Linux, and IoT — same protocols, different dashboards",
+    content: "",
+    contentHtml: `<style>
+  .post-body p { font-size: 16px; line-height: 1.8; margin: 0 0 1.4rem; }
+  .post-body h2 { font-size: 18px; font-weight: 500; margin: 2.5rem 0 0.75rem; }
+  .post-body a { text-decoration: none; border-bottom: 1px solid currentColor; opacity: 0.85; }
+  .post-body a:hover { opacity: 1; }
+  .post-body .pullquote { border-left: 3px solid currentColor; margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.25rem; opacity: 0.85; }
+  .post-body .pullquote p { font-size: 19px; line-height: 1.55; font-style: italic; margin: 0; }
+  .post-body .callout { border: 1px solid; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.75rem 0; opacity: 0.9; }
+  .post-body .callout p { font-size: 14px; line-height: 1.7; margin: 0 0 0.5rem; }
+  .post-body .callout p:last-child { margin: 0; }
+  .post-body .sources { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid; }
+  .post-body .sources h3 { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.75rem; opacity: 0.6; }
+  .post-body .sources ul { list-style: none; padding: 0; margin: 0; }
+  .post-body .sources li { font-size: 13px; margin-bottom: 0.4rem; padding-left: 1rem; position: relative; opacity: 0.7; }
+  .post-body .sources li::before { content: "→"; position: absolute; left: 0; opacity: 0.5; }
+  .post-body .footer-line { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid; font-size: 13px; opacity: 0.6; }
+</style>
+<div class="post-body">
+  <div class="body">
+    <p>Every few years, someone in the MDM industry rebrands the same set of capabilities, ships a new dashboard, and charges more for it. The analyst firms write comparison reports. The community debates which platform is "best." IT teams spend months in RFP cycles trying to figure out which vendor has the better enrollment workflow.</p>
+    <p>I've been in this industry for fifteen years, across AirWatch, MobileIron, SOTI, Jamf, Intune, and a dozen others. Here's what I've learned: the platform debate is mostly noise. Once you understand what's actually happening underneath — the protocols, the APIs, the OS-level constraints — the vendor differences collapse into something much smaller than the marketing suggests. The UI is a preference. The protocol is the product.</p>
+    <h2>The protocol doesn't care what dashboard you're using</h2>
+    <p>When Jamf enrolls a Mac, it's talking to the same <a href="https://developer.apple.com/documentation/devicemanagement" target="_blank" rel="noopener noreferrer">Apple MDM protocol</a> that Intune is talking to. The same APNs push mechanism. The same configuration profile schema. The same supervised vs. unsupervised capability boundaries. The same ABM integration endpoints. Apple publishes the spec. Every MDM vendor implements it. What you're buying when you choose Jamf over Kandji over Workspace ONE is not a fundamentally different Apple management capability — it's a different interpretation of the same protocol, wrapped in a different interface, with different tradeoffs around usability, automation, and price.</p>
+    <p>The same is true on Android. When SOTI MobiControl manages a Zebra device, it's using the <a href="https://developers.google.com/android/management" target="_blank" rel="noopener noreferrer">Android Management API</a> — the same one NinjaOne, VMware, and Ivanti are using. Google defines what's manageable. The EMM vendor decides how to expose it. Knox on Samsung adds a layer on top, but even that is a published API surface that any certified vendor can access. The device OS is always the authority. The MDM vendor is always the intermediary.</p>
+    <div class="pullquote">
+      <p>The platform doesn't control the device. The OS does. The platform just holds the keys — and Apple, Google, and Microsoft decide who gets a copy.</p>
+    </div>
+    <h2>What the UI is actually selling you</h2>
+    <p>This isn't a cynical point. The UI matters. Abstraction matters. The difference between a well-designed enrollment workflow and a poorly designed one is real — especially at scale, especially for MSPs managing dozens of clients with thin margins on technician time. Good UX on top of a commodity protocol is genuinely valuable.</p>
+    <p>But it's worth being clear about what you're evaluating when you compare MDM platforms. You're not comparing fundamentally different management capabilities. You're comparing:</p>
+    <p><strong>Abstraction quality.</strong> How well does the platform hide the complexity of the underlying protocol from the admin? Can a technician push a software update declaration without knowing what a DDM declaration is? Can they set up ADE enrollment without understanding the ABM token flow? The best platforms make the protocol invisible. The worst ones just rename it.</p>
+    <p><strong>Automation surface.</strong> Every MDM vendor gets the same API from Apple and Google. What they build on top of it — webhook integrations, scripting engines, rule-based automation, GitOps workflows — is where real differentiation lives. This is the layer that determines whether the platform scales with your operation or becomes a manual bottleneck.</p>
+    <p><strong>Reliability of implementation.</strong> Two vendors can implement the same protocol endpoint differently and get wildly different real-world results. APNs push delivery, check-in timing, profile conflict handling, error surfacing — these are implementation details that don't show up in a feature comparison matrix but absolutely show up at 2 AM when a fleet of devices stops checking in.</p>
+    <p><strong>Support for the edges.</strong> The protocol defines the baseline. Edge cases — rugged devices, kiosk deployments, multi-user shared iPads, Android Enterprise work profiles on BYOD — are where the platform choices actually diverge. Not because the vendors have different APIs, but because some have invested more in the complexity of handling those scenarios well.</p>
+    <h2>The underlying stack, demystified</h2>
+    <p>Here's what's actually running every time any management platform "manages" a device. It's the same stack, regardless of vendor:</p>
+    <p><strong>On Apple:</strong> The device enrolls via a signed mobileconfig pointing it at the MDM server. All communication runs through <a href="https://developer.apple.com/documentation/devicemanagement/implementing-device-management#Communicate-with-Devices-through-APNs" target="_blank" rel="noopener noreferrer">APNs</a> as the push layer. The MDM server sends a push, the device calls back to retrieve queued commands, executes them, reports status. Configuration is delivered as signed XML payloads. Since iOS 15 and macOS 13, DDM adds a parallel channel using JSON declarations with a proactive status callback model. That's it. Every Apple MDM on the market is a wrapper around this flow.</p>
+    <p><strong>On Android:</strong> Android Enterprise defines the management surface via a Device Policy Controller — either Google's own Android Device Policy app or a vendor-supplied DPC for specialized deployments. The DPC applies policies defined by the EMM server via the Android Management API. Managed Google Play handles app distribution. Knox adds Samsung-specific APIs for deeper hardware control. Zebra's EMDK and StageNow layer on top of that for industrial-grade configuration. Every Android EMM is a wrapper around this stack.</p>
+    <p><strong>On Windows:</strong> <a href="https://learn.microsoft.com/en-us/windows/client-management/mdm-overview" target="_blank" rel="noopener noreferrer">Windows MDM</a> runs over OMA-DM — an open standard that predates everything else on this list. Intune, Workspace ONE, and every other Windows MDM is a server-side implementation of the same OMA-DM client baked into Windows. Group Policy still exists. Modern management is OMA-DM all the way down.</p>
+    <p><strong>On Linux:</strong> Linux is the honest one — there's no single OS vendor mandating a management protocol, so the ecosystem had to build its own. The dominant pattern is agent-based telemetry and policy enforcement via tools like <a href="https://osquery.io" target="_blank" rel="noopener noreferrer">osquery</a>, which exposes the OS as a queryable SQL database, combined with an MDM layer like <a href="https://fleetdm.com" target="_blank" rel="noopener noreferrer">Fleet</a> that runs on top. Configuration management falls back to the tools the infrastructure world has used for thirty years — Ansible, Puppet, Chef — applying declared state over SSH. There's no APNs equivalent, no enrollment profile, no OS-enforced management channel. What you gain is transparency and control. What you trade is the structured guardrails Apple and Google provide. The "protocol is the product" principle still holds — it's just that on Linux, the community built the protocol rather than the OS vendor mandating it.</p>
+    <p><strong>On IoT:</strong> This is where the story gets interesting — and where the "seen one, seen them all" thesis gets genuinely stress-tested. IoT device management is still in the protocol fragmentation era that mobile left behind a decade ago. <a href="https://mqtt.org" target="_blank" rel="noopener noreferrer">MQTT</a> handles lightweight pub/sub messaging for constrained devices. <a href="https://www.openmobilealliance.org/lwm2m" target="_blank" rel="noopener noreferrer">LwM2M</a> is the closest thing the IoT world has to a device management protocol standard — it defines object models for device configuration, firmware updates, and telemetry over CoAP. OMA-DM, the same protocol powering Windows MDM, also has an IoT flavor. AWS IoT, Azure IoT Hub, and Google Cloud IoT each layer their own management APIs on top. The result is a landscape that looks a lot like mobile management in 2010: multiple competing protocols, siloed vendor implementations, and a lot of reinvented wheels. The lesson from mobile is clear — eventually, one protocol wins or a dominant platform enforces convergence. IoT hasn't gotten there yet. The vendors who understand that history will build better things than the ones who don't.</p>
+    <div class="callout">
+      <p><strong>The practical implication:</strong> When you evaluate any device management platform — mobile, desktop, Linux, or IoT — the first question isn't "what can it manage?" The OS or protocol answers that. The real questions are: How well does it implement the underlying spec? What does it build on top? How does it handle failure? And does its abstraction layer make your team faster or slower?</p>
+    </div>
+    <h2>Why this matters for how you buy</h2>
+    <p>Most MDM RFP processes start in the wrong place. They compare feature checklists — does it support ADE? Does it have a self-service portal? Can it manage tvOS? — when those questions are almost always answered the same way by any remotely mature vendor. The protocol guarantees it. What the feature checklist doesn't tell you is how the platform behaves when the APNs cert expires silently, or how it handles a profile conflict on a supervised device, or whether the API is robust enough to build your own automation on top of it.</p>
+    <p>The engineers who've worked across multiple platforms develop an intuition for this quickly. The first time you migrate a fleet from one MDM to another, you realize the device didn't change, the OS didn't change, and your management policies didn't change — you just pointed a different UI at the same protocol. The second migration is faster. The third is routine. Because you're not learning a new management paradigm each time. You're learning a new interface for the same underlying model.</p>
+    <p>That's not a knock on the platforms. Building reliable, scalable, well-designed tooling on top of a commodity protocol is genuinely hard work, and the best vendors do it well. But it does mean that the anxiety around platform selection — "what if we pick the wrong one?" — is often misplaced. The floor is higher than people think, because the protocol enforces it. And the ceiling is determined by the things that are genuinely vendor-specific: the automation engine, the support model, the roadmap alignment, the pricing at scale.</p>
+    <h2>The exception that proves the rule</h2>
+    <p>There is one place where the "seen one, seen them all" framing breaks down, and it's worth naming honestly: the gap between platforms that track platform evolution closely and those that don't.</p>
+    <p>DDM is a good example. Apple published the spec in 2021. Four years later, vendor support ranged from comprehensive to cosmetic. The protocol was available to everyone equally. The differentiation was entirely in execution — who invested in implementing it properly, who built the right abstractions on top, and who understood what the status channel actually meant for the admin experience.</p>
+    <p>IoT is the longer-running version of the same story. The vendors who understand that MQTT and LwM2M are transitional — that the endpoint management industry will eventually converge on something more like the mobile model — will build more durable things than the ones optimizing for today's fragmented landscape. The protocol always wins eventually. The question is just which one.</p>
+    <div class="pullquote">
+      <p>Platform selection isn't about finding the one that does different things. It's about finding the one that does the same things better — and will keep doing them better as the protocol evolves.</p>
+    </div>
+    <h2>The frame that changes everything</h2>
+    <p>Once you internalize that the protocol is the product, a few things become clearer:</p>
+    <p><strong>Migrations become less scary.</strong> You're not re-learning device management — you're re-enrolling devices into a different implementation of the same management model. The hardest part is usually the tooling around the migration, not the migration itself.</p>
+    <p><strong>Vendor lock-in becomes more legible.</strong> The lock isn't in the management capabilities — those are protocol-defined and portable. The lock is in the automation you've built on top of the vendor's proprietary APIs, the custom integrations, the reporting infrastructure. Know where your lock-in actually lives before you sign the contract.</p>
+    <p><strong>Evaluations become faster.</strong> Once you stop comparing feature checklists and start asking "how does this platform handle protocol edge cases, and what does the automation surface look like?" — the evaluation gets dramatically more efficient. You're asking the questions that reveal real differentiation instead of the ones that produce identical yes/no answers across every vendor.</p>
+    <p><strong>New platforms become easier to learn.</strong> Every time a new MDM vendor shows up claiming to have reinvented device management, you can ask one question: what does your protocol implementation look like? Because whatever they've built on top, the foundation is the same one it's always been. Apple's spec. Google's spec. Microsoft's spec. OMA-DM. osquery. MQTT. LwM2M. The platforms come and go. The protocols endure.</p>
+    <p>After fifteen years and more platform migrations than I can count, that's the frame I keep coming back to. The UI is rented. The protocol is permanent. Learn the protocol once, and you've learned every device management platform that will ever exist — including the ones that haven't been built yet.</p>
+    <div class="sources">
+      <h3>Further reading</h3>
+      <ul>
+        <li><a href="https://developer.apple.com/documentation/devicemanagement" target="_blank" rel="noopener noreferrer">Apple Device Management — Developer Documentation</a></li>
+        <li><a href="https://developers.google.com/android/management" target="_blank" rel="noopener noreferrer">Android Management API — Google Developers</a></li>
+        <li><a href="https://learn.microsoft.com/en-us/windows/client-management/mdm-overview" target="_blank" rel="noopener noreferrer">Mobile Device Management Overview — Microsoft Learn</a></li>
+        <li><a href="https://osquery.io" target="_blank" rel="noopener noreferrer">osquery — OS as a relational database</a></li>
+        <li><a href="https://fleetdm.com" target="_blank" rel="noopener noreferrer">Fleet — open source, GitOps-native MDM with Linux support</a></li>
+        <li><a href="https://mqtt.org" target="_blank" rel="noopener noreferrer">MQTT — lightweight IoT messaging protocol</a></li>
+        <li><a href="https://www.openmobilealliance.org/lwm2m" target="_blank" rel="noopener noreferrer">LwM2M — OMA Lightweight M2M device management standard</a></li>
+        <li><a href="https://developer.apple.com/documentation/devicemanagement/implementing-device-management#Communicate-with-Devices-through-APNs" target="_blank" rel="noopener noreferrer">Communicating with devices through APNs — Apple Developer</a></li>
+      </ul>
+    </div>
+    <div class="footer-line">Will Worland is the founder of Oak &amp; Ash Technology, a Sacramento-based IT consultancy focused on mobility, UEM, and endpoint automation. He has 15+ years of experience in enterprise device management across AirWatch, MobileIron, Jamf, Intune, and SOTI MobiControl.</div>
+  </div>
+</div>`,
+  },
+  {
     slug: "ddm-declarative-device-management",
     title: "The server is not in charge anymore. Apple just made it official.",
     date: "2026-03-14",
