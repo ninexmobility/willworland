@@ -1,5 +1,5 @@
 import { IconButton, Stack } from "@mui/material";
-import { GitHub, LinkedIn, MailOutline } from "@mui/icons-material";
+import { GitHub, LinkedIn, MailOutline, PhoneOutlined } from "@mui/icons-material";
 
 const links = [
   { href: "https://github.com/ninexmobility", icon: GitHub, label: "GitHub" },
@@ -9,6 +9,7 @@ const links = [
     label: "LinkedIn",
   },
   { href: "mailto:me@willworland.com", icon: MailOutline, label: "Email" },
+  { href: "tel:+19162585651", icon: PhoneOutlined, label: "Phone" },
 ];
 
 export default function SocialLinks() {

@@ -21,9 +21,28 @@ export default function Footer() {
           alignItems={{ xs: "flex-start", sm: "center" }}
           spacing={2}
         >
-          <Typography variant="body2" color="text.secondary">
-            © {currentYear} Will Worland
-          </Typography>
+          <Stack spacing={0.5}>
+            <Typography variant="body2" color="text.secondary">
+              © {currentYear} Will Worland
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+              <Box
+                component="a"
+                href="tel:+19162585651"
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                916.258.5651
+              </Box>
+              {" · "}
+              <Box
+                component="a"
+                href="mailto:me@willworland.com"
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                me@willworland.com
+              </Box>
+            </Typography>
+          </Stack>
           <Button
             href="/will-worland.pdf"
             download
