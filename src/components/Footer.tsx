@@ -41,6 +41,14 @@ export default function Footer() {
               >
                 me@willworland.com
               </Box>
+              {" · "}
+              <Box
+                component="a"
+                href="mailto:help@oakandashtech.com"
+                sx={{ color: "inherit", textDecoration: "none" }}
+              >
+                help@oakandashtech.com
+              </Box>
             </Typography>
           </Stack>
           <Button
