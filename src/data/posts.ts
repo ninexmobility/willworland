@@ -13,6 +13,132 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "building-mobilauncher-kiosk-lessons",
+    title: "Building a Kiosk App That Doesn't Hate You: Lessons from MobiLauncher",
+    date: "2026-04-01",
+    summary: "MobiLauncher runs as a static React kiosk inside SOTI's WebView, configured at launch by MDM attributes and hardened for unreliable devices, stale config, and zero DevTools.",
+    tags: ["Android", "Kiosk", "SOTI", "React", "MDM"],
+    image: "/mobilauncher/main.png",
+    imageAlt: "MobiLauncher operations dashboard on a Zebra Android device",
+    content: "",
+    contentHtml: `<style>
+  .post-body p { font-size: 16px; line-height: 1.8; margin: 0 0 1.4rem; }
+  .post-body h2 { font-size: 18px; font-weight: 500; margin: 2.5rem 0 0.75rem; }
+  .post-body a { text-decoration: none; border-bottom: 1px solid currentColor; opacity: 0.85; }
+  .post-body a:hover { opacity: 1; }
+  .post-body ul { margin: 0 0 1.5rem; padding-left: 1.25rem; }
+  .post-body li { font-size: 16px; line-height: 1.8; margin-bottom: 0.35rem; }
+  .post-body code { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 0.94em; }
+  .post-body figure { margin: 2rem 0; }
+  .post-body img { display: block; width: 100%; border-radius: 14px; border: 1px solid rgba(15, 23, 42, 0.08); background: #fff; }
+  .post-body figcaption { font-size: 13px; line-height: 1.7; margin-top: 0.65rem; opacity: 0.7; }
+  .post-body .pullquote { border-left: 3px solid currentColor; margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.25rem; opacity: 0.85; }
+  .post-body .pullquote p { font-size: 19px; line-height: 1.55; font-style: italic; margin: 0; }
+  .post-body .callout { border: 1px solid; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.75rem 0; opacity: 0.9; }
+  .post-body .callout p { font-size: 14px; line-height: 1.7; margin: 0 0 0.5rem; }
+  .post-body .callout p:last-child { margin: 0; }
+  .post-body .shot-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0; }
+  .post-body .shot-grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .post-body .footer-line { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid; font-size: 13px; opacity: 0.6; }
+  @media (max-width: 720px) {
+    .post-body .shot-grid,
+    .post-body .shot-grid.three { grid-template-columns: 1fr; }
+  }
+</style>
+<div class="post-body">
+  <div class="body">
+    <p>Nobody sets out wanting to build an MDM kiosk launcher. You get handed a rugged Android device, a URL, and a requirement like "make it impossible for the user to do anything except this." A few months later you're debugging a locked-down WebView on hardware that doesn't care how polished your local Chrome experience was.</p>
+    <p>That's MobiLauncher. It's a static React and TypeScript app that ships as flat assets, launches inside SOTI MobiControl, and shapes itself at runtime based on device-side attributes and macros. Building it taught me more about reliability, diagnosability, and defensive UI than most normal web work ever will.</p>
+
+    <h2>The environment is not a browser</h2>
+    <p>The first thing kiosk work beats into you is that your app does not run in Chrome. It runs in a WebView packaged with the agent and the device firmware you actually deployed. On our side that meant PeopleNet-era Android hardware first, then larger Samsung and Zebra fleets managed through SOTI MobiControl. These are operational devices, not lifestyle gadgets. Their update cadence reflects that.</p>
+    <p>In practice, that changes the engineering standard:</p>
+    <ul>
+      <li>CSS and JavaScript support is whatever the embedded WebView says it is, not whatever your laptop shipped last week.</li>
+      <li>Performance budgets matter immediately because the hardware is modest and the app is always full-screen.</li>
+      <li>There are no browser debugging comforts waiting for you in production.</li>
+    </ul>
+    <div class="callout">
+      <p><strong>The real constraint:</strong> when a field device fails, you are usually debugging by behavior, logs, and whatever instrumentation you had the discipline to build ahead of time.</p>
+    </div>
+
+    <h2>SOTI's JS agent API is powerful, and a little unforgiving</h2>
+    <p>SOTI's JavaScript agent API is what makes a kiosk shell like this useful instead of decorative. It gives the web app a live bridge into the management layer: CustomAttributes, macros, device metadata, app checks, and other operational hooks. That means the launcher can be a real control surface for the device instead of just a pretty menu.</p>
+    <p>It also means your runtime contract is only as clean as your MDM configuration. Missing attributes usually come back empty. A macro typo in the console can look exactly like a broken feature. Agent behavior varies across versions. If you don't wrap that surface with consistent fallbacks and logging, your users end up testing your MDM profile for you.</p>
+
+    <div class="shot-grid three">
+      <figure class="shot">
+        <img src="/mobilauncher/menu.png" alt="Overflow menu in MobiLauncher with device info and tools entries" />
+        <figcaption>The launcher exposes device-aware actions directly in the shell instead of forcing users back into the MDM agent.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/mobilauncher/tools-dialog.png" alt="Tools dialog in MobiLauncher with operational actions like LTE discovery and restart agent" />
+        <figcaption>Operational tools are mapped to macros and device workflows the MDM agent can actually execute.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/mobilauncher/eng-tools.png" alt="Engineer tools dialog in MobiLauncher with device info, VPN test, logs, and display controls" />
+        <figcaption>One layer deeper, engineering tools give support staff a controlled way to diagnose or recover a device without leaving the launcher.</figcaption>
+      </figure>
+    </div>
+
+    <h2>Runtime configuration without a backend</h2>
+    <p>One of the more interesting parts of MobiLauncher is that there is no backend at launch. The app is a static export. One build has to land on different devices, in different groups, for different business units, with different themes and different feature sets.</p>
+    <p>The solution is simple and surprisingly durable: the MDM layer injects values into the document root before the app boots, and the app reads those values into state on startup. Theme, business context, VPN state, tool visibility, launch behavior, and tenant-specific overrides all flow from HTML data attributes and config blobs, not runtime API calls.</p>
+
+    <div class="shot-grid">
+      <figure class="shot">
+        <img src="/mobilauncher/index.png" alt="HTML index file with MobiControl-injected data attributes on the document element" />
+        <figcaption>Launch-time attributes on the root element let the same bundle identify the device, group, business context, theme, and enabled tools before React mounts.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/mobilauncher/config001.png" alt="Operations JSON configuration defining a modern shell and launcher tiles" />
+        <figcaption>Per-lob configuration controls the shell, tiles, labels, and actions, which keeps tenant variation out of the compiled code path.</figcaption>
+      </figure>
+    </div>
+
+    <div class="pullquote">
+      <p>The device tells the app what world it's in, and the app renders accordingly. For kiosk work, that contract matters more than any backend you wish you had.</p>
+    </div>
+
+    <p>The upside is obvious: no startup API dependency, a single deployable artifact, and operators changing behavior in the MDM console instead of waiting on a rebuild. The downside is that your attribute names and config schema become an API surface. Rename one carelessly and you've broken a fleet without changing a single visible line of UI.</p>
+
+    <h2>Diagnosability is a feature, not a nice-to-have</h2>
+    <p>The best decision we made was building support surfaces into the product itself. In a normal web app, a hidden diagnostics panel can feel indulgent. In a kiosk environment it is the difference between remote triage and total blindness.</p>
+    <p>MobiLauncher eventually grew a support path that exposed device info, runtime inputs, network state, and launcher logs directly on the device. That changed the support model. Instead of trying to infer why a layout failed or a feature disappeared, we could inspect the state the device believed to be true.</p>
+
+    <div class="shot-grid">
+      <figure class="shot">
+        <img src="/mobilauncher/device-info.png" alt="Device info panel in MobiLauncher showing Zebra ET45 details, storage, signal, VPN, and network data" />
+        <figcaption>Device info makes the live operating context visible: model, asset, storage, signal, VPN, and network state in one place.</figcaption>
+      </figure>
+      <figure class="shot">
+        <img src="/mobilauncher/log.png" alt="Launcher logs screen in MobiLauncher showing runtime inputs and config load events" />
+        <figcaption>Launcher logs surface config resolution, locale loading, and bad keys so support can see what happened before the UI drifted.</figcaption>
+      </figure>
+    </div>
+
+    <h2>UI decisions matter more when users can't escape</h2>
+    <p>Kiosk UX is harsher than normal UX because the user has no graceful exit. They cannot open another tab, work around your layout, or shrug and try again later. If a button jumps during render, it causes mis-taps. If a tile disappears with no fallback, the device feels broken. If the interface is slow, the hardware gets blamed first and your software second.</p>
+    <p>That pushed a few priorities to the front for us: reserve space for dynamic regions, keep touch targets oversized, default aggressively when configuration is missing, and budget component weight like the target hardware is always the least-capable device in the rollout. Because it usually is.</p>
+
+    <h2>The provisioning gap is real</h2>
+    <p>There is a category of kiosk failure that only appears after deployment: wrong group assignment, stale attributes, missing firmware prerequisites, late config sync, or a typo in a macro that silently strips runtime inputs. The app hasn't changed, but the environment around it has drifted just enough to create a bad morning for someone on shift.</p>
+    <p>That gap never fully closes. What you can do is design for it. Assume configuration arrives late. Assume a field device is missing one important value. Assume the agent profile is slightly wrong. If the app still renders something coherent in those conditions, operations stay calm. If it doesn't, you get a support incident that looks random from the outside and perfectly predictable in hindsight.</p>
+
+    <h2>What I'd tell myself at the start</h2>
+    <p><strong>Define the runtime schema early.</strong> Attribute names and config shape are not implementation details once the MDM console depends on them.</p>
+    <p><strong>Build diagnostics on day one.</strong> The hidden support surfaces ended up being some of the most important code in the product.</p>
+    <p><strong>Test on actual hardware sooner.</strong> Emulators won't tell you how a Zebra device feels under load or how a WebView behaves when the fleet is out of date.</p>
+    <p><strong>Design every feature with a missing-config path.</strong> The default state is part of the feature, not a cleanup task for later.</p>
+    <p><strong>Treat the MDM console like production.</strong> Because it is.</p>
+
+    <p>MobiLauncher is still evolving, but the core architecture has held up: static deployment, runtime configuration from MDM, defensive rendering, and first-class diagnostics. The constrained environment is exactly why those decisions lasted. When you build for the worst device on the worst network on the worst day, the rest of the fleet gets easier.</p>
+
+    <div class="footer-line">Will Worland is the founder of Oak &amp; Ash Technology, a Sacramento-based IT consultancy focused on mobility, UEM, and endpoint automation. He has 15+ years of experience in enterprise device management across AirWatch, MobileIron, Jamf, Intune, and SOTI MobiControl.</div>
+  </div>
+</div>`,
+  },
+  {
     slug: "mdm-protocol-is-the-product",
     title: "Once you've seen one MDM, you've seen them all.",
     date: "2026-03-21",
