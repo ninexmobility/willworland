@@ -1,0 +1,135 @@
+---
+import { site } from "~/data/site";
+import SocialLinks from "./SocialLinks.astro";
+import ThemeToggle from "./ThemeToggle.astro";
+import Icon from "./Icon.astro";
+
+const path = Astro.url.pathname;
+const isActive = (p: string) =>
+  p === "/" ? path === p : path === p || path.startsWith(p + "/");
+
+const navItems = [
+  { href: "/resume", label: "Resume" },
+  { href: "/uses", label: "Uses" },
+  { href: "/projects", label: "Projects" },
+  { href: "/blog", label: "Blog" },
+];
+---
+
+<header
+  class="sticky top-0 z-40 border-b border-ink-200 bg-ink-50/85 backdrop-blur-md dark:border-ink-800 dark:bg-ink-950/85"
+>
+  <div class="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+    <a
+      href="/"
+      class="font-mono text-sm font-semibold tracking-tight text-ink-900 hover:text-accent-600 dark:text-ink-100 dark:hover:text-accent-400"
+    >
+      will.worland
+    </a>
+
+    {/* Desktop nav */}
+    <nav class="hidden items-center gap-1 md:flex" aria-label="Primary">
+      {
+        navItems.map((item) => (
+          <a
+            href={item.href}
+            aria-current={isActive(item.href) ? "page" : undefined}
+            class:list={[
+              "rounded-md px-2.5 py-1.5 text-sm font-medium transition-colors",
+              isActive(item.href)
+                ? "text-accent-600 dark:text-accent-300"
+                : "text-ink-600 hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-ink-100",
+            ]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <a
+        href={site.shopUrl}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-1 rounded-md px-2.5 py-1.5 text-sm font-medium text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-ink-100"
+      >
+        Shop
+        <Icon name="external" class="h-3 w-3 opacity-60" />
+      </a>
+    </nav>
+
+    <div class="flex items-center gap-1">
+      <SocialLinks class="hidden sm:flex" />
+      <ThemeToggle />
+      <button
+        type="button"
+        id="mobile-menu-toggle"
+        aria-label="Toggle navigation menu"
+        aria-controls="mobile-menu"
+        aria-expanded="false"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 md:hidden dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-ink-100"
+      >
+        <Icon name="menu" />
+      </button>
+    </div>
+  </div>
+
+  {/* Mobile nav */}
+  <nav
+    id="mobile-menu"
+    aria-label="Mobile"
+    class="hidden border-t border-ink-200 px-4 pb-4 pt-3 md:!hidden dark:border-ink-800"
+  >
+    <ul class="flex flex-col gap-0.5">
+      {
+        navItems.map((item) => (
+          <li>
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? "page" : undefined}
+              class:list={[
+                "block rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                isActive(item.href)
+                  ? "bg-accent-50 text-accent-700 dark:bg-accent-900/30 dark:text-accent-300"
+                  : "text-ink-700 hover:bg-ink-100 dark:text-ink-200 dark:hover:bg-ink-800",
+              ]}
+            >
+              {item.label}
+            </a>
+          </li>
+        ))
+      }
+      <li>
+        <a
+          href={site.shopUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="flex items-center justify-between rounded-md px-3 py-2 text-sm font-medium text-ink-700 hover:bg-ink-100 dark:text-ink-200 dark:hover:bg-ink-800"
+        >
+          <span>Shop</span>
+          <Icon name="external" class="h-3.5 w-3.5 opacity-60" />
+        </a>
+      </li>
+    </ul>
+    <div class="mt-4 border-t border-ink-200 pt-3 dark:border-ink-800">
+      <SocialLinks />
+    </div>
+  </nav>
+</header>
+
+<script is:inline>
+  (() => {
+    const btn = document.getElementById("mobile-menu-toggle");
+    const menu = document.getElementById("mobile-menu");
+    if (!btn || !menu) return;
+    btn.addEventListener("click", () => {
+      const open = menu.classList.toggle("hidden") === false;
+      btn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
+    // Close on navigation
+    menu.querySelectorAll("a").forEach((a) => {
+      a.addEventListener("click", () => {
+        menu.classList.add("hidden");
+        btn.setAttribute("aria-expanded", "false");
+      });
+    });
+  })();
+</script>

@@ -1,0 +1,202 @@
+---
+import { resume } from "~/data/resume";
+import { contact } from "~/data/socials";
+import { site } from "~/data/site";
+
+// Intentionally NOT extending BaseLayout — this page is a print-only
+// template consumed by puppeteer to generate /resume.pdf.
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>{resume.name} — Resume</title>
+    <meta name="robots" content="noindex" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    />
+    <style>
+      :root {
+        --ink-50: #f8f8f9;
+        --ink-200: #e3e3e7;
+        --ink-400: #9ea0a8;
+        --ink-500: #6f7079;
+        --ink-700: #36373d;
+        --ink-800: #1f2024;
+        --ink-900: #121317;
+        --accent: #2172d2;
+      }
+
+      @page {
+        size: Letter;
+        margin: 0.5in 0.6in;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: "Inter", "Segoe UI", system-ui, -apple-system, sans-serif;
+        color: var(--ink-800);
+        background: #fff;
+        font-size: 10.5pt;
+        line-height: 1.5;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .container {
+        max-width: 7.4in;
+        margin: 0 auto;
+        padding: 0.25in 0;
+      }
+
+      header { margin-bottom: 14pt; }
+
+      .name {
+        font-size: 22pt;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--ink-900);
+        margin: 0;
+      }
+
+      .title {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 10pt;
+        color: var(--ink-700);
+        margin: 2pt 0 0;
+      }
+
+      .meta {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-500);
+        margin: 4pt 0 0;
+      }
+      .meta a { color: var(--accent); text-decoration: none; }
+
+      .summary {
+        margin: 12pt 0 0;
+        font-size: 10pt;
+        line-height: 1.55;
+        color: var(--ink-700);
+      }
+
+      h2 {
+        font-size: 9.5pt;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-500);
+        border-bottom: 1px solid var(--ink-200);
+        padding-bottom: 4pt;
+        margin: 18pt 0 8pt;
+      }
+
+      .item {
+        margin-bottom: 10pt;
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      .item .heading {
+        font-size: 11pt;
+        font-weight: 600;
+        color: var(--ink-900);
+        margin: 0;
+      }
+
+      .item .subheading {
+        font-size: 10pt;
+        color: var(--ink-700);
+        margin: 1pt 0 0;
+      }
+
+      .item .item-meta {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8.5pt;
+        color: var(--ink-500);
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        margin: 2pt 0 0;
+      }
+
+      .item .desc {
+        margin: 4pt 0 0;
+        font-size: 9.5pt;
+        line-height: 1.55;
+        color: var(--ink-700);
+      }
+
+      .item ul {
+        margin: 4pt 0 0;
+        padding-left: 14pt;
+      }
+
+      .item li {
+        margin-bottom: 2pt;
+        font-size: 9.5pt;
+        line-height: 1.5;
+        color: var(--ink-700);
+      }
+
+      footer {
+        margin-top: 18pt;
+        padding-top: 8pt;
+        border-top: 1px solid var(--ink-200);
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-400);
+      }
+      footer a { color: var(--accent); text-decoration: none; }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1 class="name">{resume.name}</h1>
+        <p class="title">{resume.title}</p>
+        <p class="meta">
+          {resume.location} · <a href={`mailto:${contact.emailPrimary}`}>{contact.emailPrimary}</a> · <a href={contact.phoneHref}>{contact.phoneDisplay}</a> · <a href={site.url}>{site.url.replace(/^https?:\/\//, "")}</a>
+        </p>
+        <p class="summary">{resume.summary}</p>
+      </header>
+
+      {
+        resume.sections.map((section) => (
+          <section>
+            <h2>{section.title}</h2>
+            {section.items.map((item) => (
+              <div class="item">
+                {item.heading && <p class="heading">{item.heading}</p>}
+                {item.subheading && <p class="subheading">{item.subheading}</p>}
+                {item.meta && <p class="item-meta">{item.meta}</p>}
+                {item.description && <p class="desc">{item.description}</p>}
+                {item.bullets && item.bullets.length > 0 && (
+                  <ul>
+                    {item.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </section>
+        ))
+      }
+
+      <footer>
+        Generated from <a href={`${site.url}/resume`}>{site.url.replace(/^https?:\/\//, "")}/resume</a> · {new Date().toISOString().slice(0, 10)}
+      </footer>
+    </div>
+  </body>
+</html>

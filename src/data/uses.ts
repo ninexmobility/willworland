@@ -1,8 +1,3 @@
-/**
- * Type-safe /uses page data.
- * Inspired by uses.tech — tools, hardware, and software I rely on.
- */
-
 export interface UsesCategory {
   title: string;
   description?: string;
@@ -43,7 +38,6 @@ export const usesData: UsesCategory[] = [
       },
     ],
   },
-
   {
     title: "Typography",
     items: [
@@ -54,7 +48,6 @@ export const usesData: UsesCategory[] = [
       },
     ],
   },
-
   {
     title: "Terminal Setup",
     items: [
@@ -66,7 +59,6 @@ export const usesData: UsesCategory[] = [
       },
     ],
   },
-
   {
     title: "Desktop Apps",
     items: [
@@ -82,7 +74,8 @@ export const usesData: UsesCategory[] = [
       },
       {
         name: "Browsers",
-        description: "Chrome for daily use; Firefox Developer Edition for testing.",
+        description:
+          "Chrome for daily use; Firefox Developer Edition for testing.",
         url: "https://www.google.com/chrome/",
       },
       {
@@ -97,7 +90,6 @@ export const usesData: UsesCategory[] = [
       },
     ],
   },
-
   {
     title: "Desk Setup — Compute",
     items: [
@@ -106,7 +98,7 @@ export const usesData: UsesCategory[] = [
         description: "Primary personal development machine.",
       },
       {
-        name: "Asus ROG Strix 17\" (2018) Core i7 / GTX 1080 8GB",
+        name: 'Asus ROG Strix 17" (2018) Core i7 / GTX 1080 8GB',
         description: "Personal Windows machine for gaming and testing.",
       },
       {
@@ -115,12 +107,11 @@ export const usesData: UsesCategory[] = [
       },
     ],
   },
-
   {
     title: "Desk Setup — Peripherals",
     items: [
       {
-        name: "Samsung 43\" M70B Series Smart Monitor",
+        name: 'Samsung 43" M70B Series Smart Monitor',
         description: "Main display for work and personal projects.",
       },
       {

@@ -1,0 +1,74 @@
+---
+import type { CollectionEntry } from "astro:content";
+import FormattedDate from "./FormattedDate.astro";
+import Tag from "./Tag.astro";
+import Icon from "./Icon.astro";
+
+interface Props {
+  post: CollectionEntry<"posts">;
+  compact?: boolean;
+}
+
+const { post, compact = false } = Astro.props;
+const { title, date, summary, tags, cover, coverAlt } = post.data;
+const href = `/blog/${post.id}`;
+---
+
+<article
+  class="group relative flex flex-col gap-3 overflow-hidden rounded-md border border-ink-200 bg-white transition-colors hover:border-ink-300 sm:flex-row dark:border-ink-800 dark:bg-ink-900/40 dark:hover:border-ink-700"
+>
+  {
+    cover && (
+      <a
+        href={href}
+        class="block shrink-0 sm:w-48"
+        aria-hidden="true"
+        tabindex="-1"
+      >
+        <img
+          src={cover}
+          alt={coverAlt ?? title}
+          loading="lazy"
+          decoding="async"
+          class="h-40 w-full object-cover sm:h-full"
+        />
+      </a>
+    )
+  }
+  <div class="flex flex-1 flex-col gap-2 p-4 sm:p-5">
+    <div class="flex items-center justify-between gap-3">
+      <FormattedDate date={date} format="short" />
+      {
+        !compact && tags.length > 0 && (
+          <div class="hidden gap-1 sm:flex">
+            {tags.slice(0, 2).map((t) => (
+              <Tag label={t} size="xs" />
+            ))}
+          </div>
+        )
+      }
+    </div>
+
+    <h3 class="text-lg font-semibold leading-snug text-ink-900 dark:text-ink-50">
+      <a
+        href={href}
+        class="after:absolute after:inset-0 group-hover:text-accent-600 dark:group-hover:text-accent-300"
+      >
+        {title}
+      </a>
+    </h3>
+
+    <p class="line-clamp-2 text-sm leading-relaxed text-ink-600 dark:text-ink-300">
+      {summary}
+    </p>
+
+    {
+      !compact && (
+        <span class="mt-1 inline-flex items-center gap-1 text-xs font-medium text-accent-600 transition-transform group-hover:translate-x-0.5 dark:text-accent-300">
+          Read post
+          <Icon name="arrow-right" class="h-3 w-3" />
+        </span>
+      )
+    }
+  </div>
+</article>

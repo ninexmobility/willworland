@@ -1,0 +1,214 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans:
+    "Inter", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono:
+    "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", "Courier New", monospace;
+
+  --color-accent-50: #eef5ff;
+  --color-accent-100: #d9e8ff;
+  --color-accent-200: #b9d5ff;
+  --color-accent-300: #88baff;
+  --color-accent-400: #5896fb;
+  --color-accent-500: #2172d2;
+  --color-accent-600: #1859ad;
+  --color-accent-700: #144889;
+  --color-accent-800: #133e72;
+  --color-accent-900: #133460;
+
+  --color-ink-50: #f8f8f9;
+  --color-ink-100: #f1f1f3;
+  --color-ink-200: #e3e3e7;
+  --color-ink-300: #c8c9cf;
+  --color-ink-400: #9ea0a8;
+  --color-ink-500: #6f7079;
+  --color-ink-600: #4f5058;
+  --color-ink-700: #36373d;
+  --color-ink-800: #1f2024;
+  --color-ink-900: #121317;
+  --color-ink-950: #0a0a0c;
+
+  --radius-card: 0.5rem;
+}
+
+/* Bootstrap font from Google Fonts so styles render before JS */
+@layer base {
+  html {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color-scheme: light dark;
+  }
+
+  body {
+    background-color: var(--color-ink-50);
+    color: var(--color-ink-900);
+  }
+
+  html.dark body {
+    background-color: var(--color-ink-950);
+    color: var(--color-ink-100);
+  }
+
+  /* Mono accents */
+  .mono,
+  time,
+  kbd,
+  code {
+    font-family: var(--font-mono);
+  }
+
+  /* Selection */
+  ::selection {
+    background-color: var(--color-accent-200);
+    color: var(--color-accent-900);
+  }
+
+  html.dark ::selection {
+    background-color: var(--color-accent-800);
+    color: var(--color-accent-100);
+  }
+
+  /* Smooth focus rings */
+  :focus-visible {
+    outline: 2px solid var(--color-accent-500);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  /* Anchor offset for fragment links so the sticky header doesn't cover the heading */
+  :target {
+    scroll-margin-top: 5rem;
+  }
+}
+
+/* Prose customizations for blog content */
+@layer components {
+  .prose-post {
+    @apply prose prose-neutral max-w-none;
+    --tw-prose-body: var(--color-ink-800);
+    --tw-prose-headings: var(--color-ink-900);
+    --tw-prose-links: var(--color-accent-600);
+    --tw-prose-bold: var(--color-ink-900);
+    --tw-prose-counters: var(--color-ink-500);
+    --tw-prose-bullets: var(--color-ink-400);
+    --tw-prose-hr: var(--color-ink-200);
+    --tw-prose-quotes: var(--color-ink-800);
+    --tw-prose-quote-borders: var(--color-accent-500);
+    --tw-prose-captions: var(--color-ink-500);
+    --tw-prose-code: var(--color-ink-900);
+    --tw-prose-pre-code: var(--color-ink-100);
+    --tw-prose-pre-bg: var(--color-ink-900);
+    --tw-prose-th-borders: var(--color-ink-300);
+    --tw-prose-td-borders: var(--color-ink-200);
+  }
+
+  html.dark .prose-post {
+    --tw-prose-body: var(--color-ink-200);
+    --tw-prose-headings: var(--color-ink-50);
+    --tw-prose-links: var(--color-accent-300);
+    --tw-prose-bold: var(--color-ink-50);
+    --tw-prose-counters: var(--color-ink-400);
+    --tw-prose-bullets: var(--color-ink-600);
+    --tw-prose-hr: var(--color-ink-800);
+    --tw-prose-quotes: var(--color-ink-100);
+    --tw-prose-quote-borders: var(--color-accent-400);
+    --tw-prose-captions: var(--color-ink-400);
+    --tw-prose-code: var(--color-ink-100);
+    --tw-prose-pre-code: var(--color-ink-100);
+    --tw-prose-pre-bg: #11131a;
+    --tw-prose-th-borders: var(--color-ink-700);
+    --tw-prose-td-borders: var(--color-ink-800);
+  }
+
+  .prose-post :where(a):not(:where(.no-underline, .no-underline *)) {
+    @apply underline decoration-1 underline-offset-2 hover:decoration-2;
+    text-decoration-color: color-mix(in srgb, currentColor 40%, transparent);
+  }
+
+  .prose-post :where(figure) {
+    @apply my-8;
+  }
+
+  .prose-post :where(img) {
+    @apply rounded-md border border-ink-200;
+  }
+
+  html.dark .prose-post :where(img) {
+    @apply border-ink-800;
+  }
+
+  .prose-post :where(figcaption) {
+    @apply mt-2 text-sm text-ink-500;
+  }
+
+  html.dark .prose-post :where(figcaption) {
+    @apply text-ink-400;
+  }
+
+  .prose-post :where(blockquote) {
+    @apply not-italic font-normal;
+  }
+
+  .prose-post :where(.callout) {
+    @apply my-7 rounded-md border border-ink-200 bg-ink-100/40 px-5 py-4 text-[15px] leading-7;
+  }
+
+  html.dark .prose-post :where(.callout) {
+    @apply border-ink-800 bg-ink-900/60;
+  }
+
+  .prose-post :where(.pullquote) {
+    @apply my-8 border-l-2 border-accent-500 pl-5 text-lg italic text-ink-700;
+  }
+
+  html.dark .prose-post :where(.pullquote) {
+    @apply text-ink-200;
+  }
+
+  .prose-post :where(.sources) {
+    @apply mt-12 border-t border-ink-200 pt-6 text-sm;
+  }
+
+  html.dark .prose-post :where(.sources) {
+    @apply border-ink-800;
+  }
+
+  .prose-post :where(.sources h3) {
+    @apply mb-3 text-xs font-medium uppercase tracking-wider text-ink-500;
+  }
+
+  .prose-post :where(.sources ul) {
+    @apply list-none p-0;
+  }
+
+  .prose-post :where(.sources li) {
+    @apply pl-4 mb-1.5 text-ink-600;
+  }
+
+  .prose-post :where(.sources li)::before {
+    content: "→";
+    @apply mr-2 text-ink-400;
+  }
+
+  .prose-post :where(.footer-line) {
+    @apply mt-12 border-t border-ink-200 pt-5 text-xs text-ink-500;
+  }
+
+  html.dark .prose-post :where(.footer-line) {
+    @apply border-ink-800 text-ink-400;
+  }
+
+  .prose-post :where(.shot-grid) {
+    @apply my-8 grid grid-cols-1 gap-4 sm:grid-cols-2;
+  }
+
+  .prose-post :where(.shot-grid.three) {
+    @apply sm:grid-cols-3;
+  }
+}
