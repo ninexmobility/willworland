@@ -1,14 +1,9 @@
-/**
- * Type-safe resume data structure.
- * Supports flexible section layouts (jobs, education, skills, etc.).
- */
-
 export interface ResumeItem {
-  heading?: string; // Job title, degree, skill category
-  subheading?: string; // Company, school
-  meta?: string; // Date range, location
-  description?: string; // Brief overview
-  bullets?: string[]; // Key achievements or details
+  heading?: string;
+  subheading?: string;
+  meta?: string;
+  description?: string;
+  bullets?: string[];
 }
 
 export interface ResumeSection {
@@ -19,6 +14,7 @@ export interface ResumeSection {
 export interface Resume {
   name: string;
   title: string;
+  location: string;
   summary: string;
   sections: ResumeSection[];
 }
@@ -26,6 +22,7 @@ export interface Resume {
 export const resume: Resume = {
   name: "Will Worland",
   title: "Senior Engineer · Enterprise Mobility / UEM · Automation",
+  location: "Sacramento, CA",
   summary:
     "Seasoned hybrid engineer and enterprise mobility/UEM specialist with 25+ years across endpoint management, automation, and secure device lifecycle at scale. Proven record leading cross-team programs, building CI/CD and deployment workflows, and translating ambiguous requirements into reliable, on-time deliverables. Former client platform engineer (Uber) and long-time enterprise mobility practitioner, now focused on solution automation and secure Android lockdown experiences. Known for clear communication, documentation quality, and collaborative execution across product, engineering, security, and operations.",
 
@@ -40,7 +37,7 @@ export const resume: Resume = {
           description:
             "Deliver internal automation initiatives and workplace engineering solutions end-to-end, owning scope, milestones, and cross-team integration.",
           bullets: [
-            "Product-manage and engineer a secure Android 'MobiControl' `lockdown` launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
+            "Product-manage and engineer a secure Android 'MobiControl' lockdown launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
             "Build and maintain a CI/CD application packaging pipeline for repeatable app deployments, integrating EMM/MDM APIs, artifact versioning, test gates, and rollout orchestration.",
             "Lead process improvements, write design/ops documentation, and publish structured status updates, risks, and mitigations; mentor engineers and champion documentation quality.",
             "Impact: Reduced deployment timelines and strengthened Android fleet reliability through policy hardening and lifecycle automation.",
@@ -59,7 +56,7 @@ export const resume: Resume = {
           ],
         },
         {
-          heading: " Engineer II, Systems",
+          heading: "Engineer II, Systems",
           subheading: "Uber — Client Platform Engineering",
           meta: "Aug 2017 – Jan 2019 • San Francisco, CA",
           bullets: [

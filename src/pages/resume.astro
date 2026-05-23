@@ -1,0 +1,162 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import { resume } from "~/data/resume";
+import { contact } from "~/data/socials";
+import Icon from "~/components/Icon.astro";
+
+const downloads = [
+  { format: "pdf", label: "PDF", icon: "file-pdf", href: "/resume.pdf" },
+  { format: "md", label: "Markdown", icon: "file-text", href: "/resume.md" },
+  { format: "txt", label: "Plain text", icon: "file", href: "/resume.txt" },
+  { format: "json", label: "JSON Resume", icon: "file-code", href: "/resume.json" },
+] as const;
+
+const SITE_URL = "https://willworland.com";
+---
+
+<BaseLayout
+  title="Resume"
+  description={resume.summary}
+>
+  <div class="mx-auto max-w-3xl px-4 py-10 sm:px-6 sm:py-14">
+    {/* Header */}
+    <header class="flex flex-col gap-6 sm:flex-row sm:items-start">
+      <img
+        src="/will.png"
+        alt={resume.name}
+        width="96"
+        height="96"
+        class="h-20 w-20 shrink-0 rounded-full border border-ink-200 object-cover dark:border-ink-800"
+      />
+      <div class="space-y-1">
+        <h1 class="text-3xl font-bold tracking-tight text-ink-900 dark:text-ink-50">
+          {resume.name}
+        </h1>
+        <p class="font-mono text-sm text-ink-600 dark:text-ink-300">
+          {resume.title}
+        </p>
+        <p class="font-mono text-xs uppercase tracking-wider text-ink-500 dark:text-ink-400">
+          {resume.location} · <a
+            href={`mailto:${contact.emailPrimary}`}
+            class="hover:text-accent-600 dark:hover:text-accent-300"
+            >{contact.emailPrimary}</a
+          > · <a
+            href={contact.phoneHref}
+            class="hover:text-accent-600 dark:hover:text-accent-300"
+            >{contact.phoneDisplay}</a
+          >
+        </p>
+      </div>
+    </header>
+
+    {/* Summary */}
+    <section class="mt-8">
+      <p class="text-base leading-relaxed text-ink-700 dark:text-ink-200">
+        {resume.summary}
+      </p>
+    </section>
+
+    {/* Downloads */}
+    <section
+      id="download"
+      class="mt-10 rounded-md border border-ink-200 bg-white p-5 dark:border-ink-800 dark:bg-ink-900/40"
+    >
+      <h2 class="text-sm font-medium uppercase tracking-wider text-ink-500 dark:text-ink-400">
+        Download
+      </h2>
+      <p class="mt-1 text-sm text-ink-600 dark:text-ink-300">
+        All formats are generated from a single source of truth and stay in sync
+        with this page.
+      </p>
+      <div class="mt-4 grid gap-2 sm:grid-cols-2">
+        {
+          downloads.map((d) => (
+            <div class="flex items-center justify-between gap-2 rounded-md border border-ink-200 px-3 py-2 dark:border-ink-800">
+              <a
+                href={d.href}
+                download
+                class="inline-flex flex-1 items-center gap-2 text-sm font-medium text-ink-800 transition-colors hover:text-accent-600 dark:text-ink-100 dark:hover:text-accent-300"
+              >
+                <Icon name={d.icon} class="h-4 w-4 text-ink-500 dark:text-ink-400" />
+                <span>{d.label}</span>
+                <span class="font-mono text-[10px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                  .{d.format}
+                </span>
+              </a>
+              <div class="flex items-center gap-0.5">
+                <a
+                  href={`https://docs.google.com/viewer?url=${encodeURIComponent(`${SITE_URL}${d.href}`)}&embedded=false`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Open ${d.label} in Google Drive viewer`}
+                  title="Open in Google Drive"
+                  class="inline-flex h-7 w-7 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-ink-100"
+                >
+                  <Icon name="drive" class="h-3.5 w-3.5" />
+                </a>
+                <a
+                  href={`https://www.dropbox.com/saver?files=${encodeURIComponent(`${SITE_URL}${d.href}|will-worland-resume.${d.format}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Save ${d.label} to Dropbox`}
+                  title="Save to Dropbox"
+                  class="inline-flex h-7 w-7 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-ink-100"
+                >
+                  <Icon name="dropbox" class="h-3.5 w-3.5" />
+                </a>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    {/* Sections */}
+    {
+      resume.sections.map((section) => (
+        <section class="mt-12">
+          <h2 class="border-b border-ink-200 pb-2 text-sm font-medium uppercase tracking-wider text-ink-500 dark:border-ink-800 dark:text-ink-400">
+            {section.title}
+          </h2>
+          <div class="mt-4 space-y-6">
+            {section.items.map((item) => (
+              <div class="space-y-2">
+                {(item.heading || item.subheading || item.meta) && (
+                  <div class="space-y-0.5">
+                    {item.heading && (
+                      <h3 class="text-base font-semibold text-ink-900 dark:text-ink-50">
+                        {item.heading}
+                      </h3>
+                    )}
+                    {item.subheading && (
+                      <p class="text-sm text-ink-700 dark:text-ink-200">
+                        {item.subheading}
+                      </p>
+                    )}
+                    {item.meta && (
+                      <p class="font-mono text-xs uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                        {item.meta}
+                      </p>
+                    )}
+                  </div>
+                )}
+                {item.description && (
+                  <p class="text-sm leading-relaxed text-ink-700 dark:text-ink-300">
+                    {item.description}
+                  </p>
+                )}
+                {item.bullets && item.bullets.length > 0 && (
+                  <ul class="list-disc space-y-1 pl-5 text-sm leading-relaxed text-ink-700 dark:text-ink-300">
+                    {item.bullets.map((b) => (
+                      <li>{b}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ))}
+          </div>
+        </section>
+      ))
+    }
+  </div>
+</BaseLayout>

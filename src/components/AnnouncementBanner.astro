@@ -1,0 +1,41 @@
+---
+import { announcement } from "~/data/announcement";
+
+if (!announcement.enabled) return null;
+
+const isExternal = announcement.link?.startsWith("http") ?? false;
+
+// Render *text* segments as <strong>
+const parts = announcement.message.split(/(\*[^*]+\*)/g);
+
+const Wrapper = announcement.link ? "a" : "div";
+---
+
+<Wrapper
+  {...announcement.link
+    ? {
+        href: announcement.link,
+        ...(isExternal
+          ? { target: "_blank", rel: "noopener noreferrer" }
+          : {}),
+      }
+    : {}}
+  class:list={[
+    "block bg-accent-600 text-white text-sm",
+    announcement.link && "transition-opacity hover:opacity-90",
+  ]}
+>
+  <div class="mx-auto flex max-w-5xl items-center justify-center gap-2 px-4 py-2 text-center">
+    <span class="font-medium">
+      {
+        parts.map((p) =>
+          p.startsWith("*") && p.endsWith("*") ? (
+            <strong class="font-semibold">{p.slice(1, -1)}</strong>
+          ) : (
+            p
+          ),
+        )
+      }
+    </span>
+  </div>
+</Wrapper>

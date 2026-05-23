@@ -1,14 +1,14 @@
-export interface Project {
+export interface ProjectCard {
   title: string;
   timeframe?: string;
   description: string;
   tech: string[];
   link?: string;
   repo?: string;
-  coverImage?: { src: string; alt: string };
+  coverImage: { src: string; alt: string };
 }
 
-export const projects: Project[] = [
+export const projects: ProjectCard[] = [
   {
     title: "Oak & Ash Tech",
     description:

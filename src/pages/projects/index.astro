@@ -1,0 +1,29 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import ProjectCard from "~/components/ProjectCard.astro";
+import { projects } from "~/data/projects";
+---
+
+<BaseLayout
+  title="Projects"
+  description="Things I've built and shipped — from consulting practices to DIY toolbox builds."
+>
+  <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+    <header class="mb-10 space-y-3">
+      <p class="font-mono text-xs uppercase tracking-wider text-ink-500 dark:text-ink-400">
+        /projects
+      </p>
+      <h1 class="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-ink-50">
+        Projects
+      </h1>
+      <p class="max-w-2xl text-base leading-relaxed text-ink-600 dark:text-ink-300">
+        A working set of things I've built, shipped, or am currently
+        maintaining — both in IT and out in the garage.
+      </p>
+    </header>
+
+    <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </div>
+</BaseLayout>
