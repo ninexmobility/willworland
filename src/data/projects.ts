@@ -21,6 +21,29 @@ export const projects: ProjectCard[] = [
     },
   },
   {
+    title: "MobiLauncher",
+    timeframe: "Beta",
+    description:
+      "Branded Android kiosk launcher for fleets with flat per-tenant pricing. Deploys standalone or under SOTI, Intune, Workspace ONE, Scalefusion, Hexnode, and Esper.",
+    tech: ["Android", "Kiosk", "MDM", "WebView", "SaaS"],
+    link: "https://mobilauncher.com",
+    coverImage: {
+      src: "/mobilauncher-screenshot.png",
+      alt: "MobiLauncher landing page",
+    },
+  },
+  {
+    title: "phacilitate",
+    description:
+      "A focused workspace for facilitators running support groups and small meetings — DocPaqs, dual countdown timers, presentation mode, and confidential notes that can auto-delete.",
+    tech: ["Web App", "iPad", "Productivity", "Facilitation"],
+    link: "https://phacilitate.app",
+    coverImage: {
+      src: "/phacilitate-screenshot.png",
+      alt: "phacilitate workspace landing page",
+    },
+  },
+  {
     title: "Neuro Nomad Studios",
     description:
       "Creative studio focused on design, development, and digital experiences.",
