@@ -24,7 +24,7 @@ export const resume: Resume = {
   title: "Senior Engineer · Enterprise Mobility / UEM · Automation",
   location: "Sacramento, CA",
   summary:
-    "Seasoned hybrid engineer and enterprise mobility/UEM specialist with 25+ years across endpoint management, automation, and secure device lifecycle at scale. Proven record leading cross-team programs, building CI/CD and deployment workflows, and translating ambiguous requirements into reliable, on-time deliverables. Former client platform engineer (Uber) and long-time enterprise mobility practitioner, now focused on solution automation and secure Android lockdown experiences. Known for clear communication, documentation quality, and collaborative execution across product, engineering, security, and operations.",
+    "Seasoned hybrid engineer and enterprise mobility/UEM specialist with 25+ years across endpoint management, automation, and secure device lifecycle at scale. Proven record leading cross-team programs, building CI/CD and deployment workflows, and translating ambiguous requirements into reliable, on-time deliverables. Former client platform engineer (Uber) and long-time enterprise mobility practitioner, now founder of Oak & Ash Technology — advising small and mid-market businesses on mobility, UEM, and endpoint automation. Known for clear communication, documentation quality, and collaborative execution across product, engineering, security, and operations.",
 
   sections: [
     {
