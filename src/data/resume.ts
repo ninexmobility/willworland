@@ -31,15 +31,22 @@ export const resume: Resume = {
       title: "Experience",
       items: [
         {
+          heading: "Founder / IT Consultant",
+          subheading: "Oak & Ash Technology",
+          meta: "Jan 2026 – Present • Sacramento, CA",
+          description:
+            "Sacramento-based IT consultancy focused on mobility, UEM, and endpoint automation for small and mid-market businesses. Vendor-agnostic platform evaluation, deployment, and ongoing operational support.",
+        },
+        {
           heading: "Engineer III, Software",
           subheading: "Enterprise Mobility — Solutions Engineering",
-          meta: "Feb 2024 – Present • St. Louis, MO (remote/Sacramento, CA)",
+          meta: "Feb 2024 – Jan 2026 • St. Louis, MO (remote/Sacramento, CA)",
           description:
-            "Deliver internal automation initiatives and workplace engineering solutions end-to-end, owning scope, milestones, and cross-team integration.",
+            "Delivered internal automation initiatives and workplace engineering solutions end-to-end, owning scope, milestones, and cross-team integration.",
           bullets: [
-            "Product-manage and engineer a secure Android 'MobiControl' lockdown launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
-            "Build and maintain a CI/CD application packaging pipeline for repeatable app deployments, integrating EMM/MDM APIs, artifact versioning, test gates, and rollout orchestration.",
-            "Lead process improvements, write design/ops documentation, and publish structured status updates, risks, and mitigations; mentor engineers and champion documentation quality.",
+            "Product-managed and engineered a secure Android 'MobiControl' lockdown launcher used across rugged devices: requirements, roadmap, policy alignment, release management, and support enablement.",
+            "Built and maintained a CI/CD application packaging pipeline for repeatable app deployments, integrating EMM/MDM APIs, artifact versioning, test gates, and rollout orchestration.",
+            "Led process improvements, wrote design/ops documentation, and published structured status updates, risks, and mitigations; mentored engineers and championed documentation quality.",
             "Impact: Reduced deployment timelines and strengthened Android fleet reliability through policy hardening and lifecycle automation.",
           ],
         },
