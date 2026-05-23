@@ -10,8 +10,6 @@ const downloads = [
   { format: "txt", label: "Plain text", icon: "file", href: "/resume.txt" },
   { format: "json", label: "JSON Resume", icon: "file-code", href: "/resume.json" },
 ] as const;
-
-const SITE_URL = "https://willworland.com";
 ---
 
 <BaseLayout
@@ -71,41 +69,20 @@ const SITE_URL = "https://willworland.com";
       <div class="mt-4 grid gap-2 sm:grid-cols-2">
         {
           downloads.map((d) => (
-            <div class="flex items-center justify-between gap-2 rounded-md border border-ink-200 px-3 py-2 dark:border-ink-800">
-              <a
-                href={d.href}
-                download
-                class="inline-flex flex-1 items-center gap-2 text-sm font-medium text-ink-800 transition-colors hover:text-accent-600 dark:text-ink-100 dark:hover:text-accent-300"
-              >
-                <Icon name={d.icon} class="h-4 w-4 text-ink-500 dark:text-ink-400" />
-                <span>{d.label}</span>
-                <span class="font-mono text-[10px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
-                  .{d.format}
-                </span>
-              </a>
-              <div class="flex items-center gap-0.5">
-                <a
-                  href={`https://docs.google.com/viewer?url=${encodeURIComponent(`${SITE_URL}${d.href}`)}&embedded=false`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Open ${d.label} in Google Drive viewer`}
-                  title="Open in Google Drive"
-                  class="inline-flex h-7 w-7 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-ink-100"
-                >
-                  <Icon name="drive" class="h-3.5 w-3.5" />
-                </a>
-                <a
-                  href={`https://www.dropbox.com/saver?files=${encodeURIComponent(`${SITE_URL}${d.href}|will-worland-resume.${d.format}`)}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={`Save ${d.label} to Dropbox`}
-                  title="Save to Dropbox"
-                  class="inline-flex h-7 w-7 items-center justify-center rounded text-ink-500 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-400 dark:hover:bg-ink-800 dark:hover:text-ink-100"
-                >
-                  <Icon name="dropbox" class="h-3.5 w-3.5" />
-                </a>
-              </div>
-            </div>
+            <a
+              href={d.href}
+              download
+              class="group flex items-center gap-3 rounded-md border border-ink-200 px-3 py-2.5 text-sm font-medium text-ink-800 transition-colors hover:border-accent-500 hover:text-accent-600 dark:border-ink-800 dark:text-ink-100 dark:hover:border-accent-400 dark:hover:text-accent-300"
+            >
+              <Icon
+                name={d.icon}
+                class="h-4 w-4 text-ink-500 transition-colors group-hover:text-accent-600 dark:text-ink-400 dark:group-hover:text-accent-300"
+              />
+              <span class="flex-1">{d.label}</span>
+              <span class="font-mono text-[10px] uppercase tracking-wider text-ink-500 dark:text-ink-400">
+                .{d.format}
+              </span>
+            </a>
           ))
         }
       </div>

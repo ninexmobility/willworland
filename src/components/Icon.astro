@@ -13,8 +13,6 @@ type IconName =
   | "menu"
   | "calendar"
   | "tag"
-  | "drive"
-  | "dropbox"
   | "file-pdf"
   | "file-text"
   | "file-code"
@@ -285,36 +283,6 @@ const sizeAttr = size ? { width: size, height: size } : {};
     >
       <path d="M20 12 12 20a2 2 0 0 1-2.83 0L2 12.83V4a2 2 0 0 1 2-2h8.83L20 9.17a2 2 0 0 1 0 2.83Z" />
       <circle cx="7" cy="7" r="1" />
-    </svg>
-  )
-}
-
-{
-  name === "drive" && (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      class={className}
-      aria-hidden="true"
-      {...sizeAttr}
-    >
-      <path d="m7.71 3.52 4.29 7.43-4.29 7.43L3.42 10.95 7.71 3.52Zm.86 7.93h7.45L12 4.0l-3.43 7.45Zm.43.86 4.29 7.43h-8.59L9 12.31Zm5.14 0h4.31l-4.29 7.43h-4.31l4.29-7.43Z" />
-    </svg>
-  )
-}
-
-{
-  name === "dropbox" && (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      viewBox="0 0 24 24"
-      fill="currentColor"
-      class={className}
-      aria-hidden="true"
-      {...sizeAttr}
-    >
-      <path d="m6 1.807-6 3.821 6 3.81 6-3.81-6-3.821Zm12 0-6 3.821 6 3.81 6-3.81-6-3.821ZM0 13.247l6 3.81 6-3.81-6-3.81-6 3.81Zm18-3.81-6 3.81 6 3.81 6-3.81-6-3.81ZM6.012 18.378l6 3.815 6-3.815-6-3.81-6 3.81Z" />
     </svg>
   )
 }

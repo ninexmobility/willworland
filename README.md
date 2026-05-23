@@ -79,8 +79,6 @@ Everything in `src/data/resume.ts` flows into:
 | Plain text | `/resume.txt` | `src/lib/resume-formats.ts` → `toPlainText()` |
 | JSON Resume | `/resume.json` | `src/lib/resume-formats.ts` → `toJsonResume()` (schema v1.0.0) |
 
-Each download tile on `/resume` also exposes "Open in Google Drive" and "Save to Dropbox" shortcuts.
-
 ## Content authoring
 
 **Blog posts** live in [src/content/posts/](src/content/posts/) as MDX files. Frontmatter:
