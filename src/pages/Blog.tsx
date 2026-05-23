@@ -5,9 +5,12 @@ import {
   CardActionArea,
   CardContent,
   Chip,
+  IconButton,
   Stack,
+  Tooltip,
   Typography,
 } from "@mui/material";
+import RssFeedIcon from "@mui/icons-material/RssFeed";
 import { useNavigate } from "react-router-dom";
 import { posts } from "../data/posts";
 
@@ -23,13 +26,27 @@ export default function Blog() {
 
   return (
     <Stack spacing={4}>
-      <Stack spacing={1}>
-        <Typography component="h1" variant="h3" fontWeight={700}>
-          Blog
-        </Typography>
-        <Typography variant="body1" color="text.secondary">
-          Thoughts on projects, tools, and whatever else is on my mind.
-        </Typography>
+      <Stack direction="row" alignItems="flex-start" justifyContent="space-between">
+        <Stack spacing={1}>
+          <Typography component="h1" variant="h3" fontWeight={700}>
+            Blog
+          </Typography>
+          <Typography variant="body1" color="text.secondary">
+            Thoughts on projects, tools, and whatever else is on my mind.
+          </Typography>
+        </Stack>
+        <Tooltip title="RSS Feed">
+          <IconButton
+            component="a"
+            href="/rss.xml"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="RSS Feed"
+            sx={{ color: "text.secondary", mt: 0.5 }}
+          >
+            <RssFeedIcon />
+          </IconButton>
+        </Tooltip>
       </Stack>
 
       <Stack spacing={2}>

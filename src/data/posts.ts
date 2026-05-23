@@ -13,6 +13,314 @@ export interface BlogPost {
 
 export const posts: BlogPost[] = [
   {
+    slug: "apple-business-free-mdm",
+    title: "Apple's Free MDM Is Here. What It Actually Means for Your Business.",
+    date: "2026-04-20",
+    summary: "Apple Business launched April 14 and rolled MDM in for free. Here's what's actually covered, what still needs a paid platform, and how to decide which side of that line you're on.",
+    tags: ["MDM", "Apple", "Small Business", "Mobility", "IT Strategy"],
+    image: "/apple-biz-2.png",
+    imageAlt: "Small business owner using an iMac managed through Apple Business",
+    content: "",
+    contentHtml: `<style>
+  .post-body p { font-size: 16px; line-height: 1.8; margin: 0 0 1.4rem; }
+  .post-body h2 { font-size: 18px; font-weight: 500; margin: 2.5rem 0 0.75rem; }
+  .post-body h3 { font-size: 16px; font-weight: 600; margin: 2rem 0 0.5rem; }
+  .post-body a { text-decoration: none; border-bottom: 1px solid currentColor; opacity: 0.85; }
+  .post-body a:hover { opacity: 1; }
+  .post-body ul { margin: 0 0 1.5rem; padding-left: 1.25rem; }
+  .post-body ol { margin: 0 0 1.5rem; padding-left: 1.25rem; }
+  .post-body li { font-size: 16px; line-height: 1.8; margin-bottom: 0.35rem; }
+  .post-body .pullquote { border-left: 3px solid currentColor; margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.25rem; opacity: 0.85; }
+  .post-body .pullquote p { font-size: 19px; line-height: 1.55; font-style: italic; margin: 0; }
+  .post-body .callout { border: 1px solid; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.75rem 0; opacity: 0.9; }
+  .post-body .callout p { font-size: 14px; line-height: 1.7; margin: 0 0 0.5rem; }
+  .post-body .callout p:last-child { margin: 0; }
+  .post-body table { width: 100%; border-collapse: collapse; margin: 1.75rem 0; font-size: 14px; }
+  .post-body th { text-align: left; padding: 0.5rem 0.75rem; border-bottom: 2px solid; opacity: 0.8; font-weight: 500; }
+  .post-body td { padding: 0.6rem 0.75rem; border-bottom: 1px solid rgba(0,0,0,0.08); vertical-align: top; line-height: 1.6; }
+  .post-body .sources { margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid; }
+  .post-body .sources h3 { font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; margin: 0 0 0.75rem; opacity: 0.6; }
+  .post-body .sources ul { list-style: none; padding: 0; margin: 0; }
+  .post-body .sources li { font-size: 13px; margin-bottom: 0.4rem; padding-left: 1rem; position: relative; opacity: 0.7; }
+  .post-body .sources li::before { content: "→"; position: absolute; left: 0; opacity: 0.5; }
+  .post-body .footer-line { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid; font-size: 13px; opacity: 0.6; }
+</style>
+<div class="post-body">
+  <div class="body">
+    <p>On April 14, 2026, Apple quietly rearranged the furniture in the business device management world. The separate portals most admins had been juggling — <strong>Apple Business Manager</strong>, <strong>Apple Business Essentials</strong>, and <strong>Apple Business Connect</strong> — were consolidated into a single platform simply called <a href="https://business.apple.com" target="_blank" rel="noopener noreferrer">Apple Business</a>. It launched in 200+ countries and regions, and the headline change is this:</p>
+
+    <p><strong>Built-in MDM is now free. No monthly per-device fee.</strong></p>
+
+    <p>That's a real shift. Apple Business Essentials used to start at $2.99/user/month — a bundled subscription that included MDM, 50 GB of iCloud storage, and Apple support for a single device. Multi-device plans ran $6.99 and $12.99/user/month (200 GB and 2 TB storage, respectively), covering up to three devices per user. You couldn't buy the MDM portion à la carte; it was always part of the bundle. For a 20-person shop running a device each, you were looking at $700+ a year just to have a managed Apple environment. Now the device management piece is free, and iCloud and AppleCare are optional paid add-ons.</p>
+
+    <p>So does this kill the case for <a href="https://www.jamf.com/" target="_blank" rel="noopener noreferrer">Jamf</a>, <a href="https://mosyle.com/" target="_blank" rel="noopener noreferrer">Mosyle</a>, <a href="https://www.iru.com/kandji-mdm" target="_blank" rel="noopener noreferrer">Iru (formerly Kandji)</a>, <a href="https://www.microsoft.com/en-us/security/business/microsoft-intune" target="_blank" rel="noopener noreferrer">Intune</a>, <a href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer">NinjaOne</a>, or any of the other paid MDM platforms? Not remotely. But the calculus changed for a specific slice of businesses, and if you're in that slice, you should absolutely take advantage.</p>
+
+    <p>Here's the honest breakdown.</p>
+
+    <h2>What "free" actually gets you</h2>
+
+    <p>The free tier of Apple Business is more capable than a lot of people assume. You get:</p>
+
+    <figure>
+      <img src="/apple-biz-1.png" alt="Apple Business built-in device management — iPhone, MacBook, and iMac ready for zero-touch deployment" />
+      <figcaption>Apple's pitch for the free tier: zero-touch deployment across iPhone, MacBook, and iMac, all managed from a single platform.</figcaption>
+    </figure>
+
+    <p><strong>Zero-touch deployment via Blueprints.</strong> Buy a Mac, iPhone, iPad, or Apple TV from Apple or an Authorized Reseller, assign it to a Blueprint, and it arrives at the employee's desk pre-configured. They sign in, it provisions itself. This is the feature most small businesses have been paying for elsewhere.</p>
+
+    <p><strong>Basic device configuration and security policies.</strong> Password requirements, FileVault encryption, Firewall, screen lock, and the usual baseline restrictions. You can lock down settings so users can't casually turn off security features.</p>
+
+    <p><strong>App distribution from the App Store.</strong> You can push App Store apps to devices or groups of devices. <a href="https://support.apple.com/en-us/102073" target="_blank" rel="noopener noreferrer">Volume Purchase Program (VPP)</a> licensing for paid apps still works the way it always has.</p>
+
+    <p><strong>Lost Mode, Remote Lock, and Remote Wipe.</strong> The fundamentals for a lost or stolen device are all there.</p>
+
+    <p><strong>Managed Apple Accounts with cryptographic separation.</strong> Work data and personal data stay genuinely separate on the same device. This is a meaningful BYOD win.</p>
+
+    <p><strong>An Admin API.</strong> You can script deployments and pull device data programmatically, which was a paid-tier feature before.</p>
+
+    <p><strong>Managed email, calendar, and directory services</strong> (requires iOS 26, iPadOS 26, or macOS 26). You can bring your own domain or buy one through Apple. Think of it as a lightweight alternative to buying a Google Workspace or Microsoft 365 seat purely for the email address.</p>
+
+    <p><strong>Brand presence features</strong> (formerly Apple Business Connect). Place cards in Apple Maps, Siri, and Spotlight. Tap to Pay branding. Order tracking in Wallet. Apple Maps ads are coming to the US and Canada this summer.</p>
+
+    <p>Paid add-ons are still available: <strong>AppleCare+ for Business</strong> (starts at $6.99/month per device, or $13.99/month per user covering up to three devices) and <strong>upgraded iCloud storage</strong> above the 5 GB per user that comes free — 50 GB is $0.99/user/mo, 200 GB is $2.99/user/mo, and 2 TB is $9.99/user/mo.</p>
+
+    <h2>Who this is genuinely good enough for</h2>
+
+    <p>Be honest with yourself about which bucket you're in.</p>
+
+    <p><strong>Free Apple Business is the right call if you are:</strong></p>
+    <ul>
+      <li>A small business or solo operator with fewer than ~25 Apple devices</li>
+      <li>Apple-only (no Android or Windows in the managed fleet)</li>
+      <li>Running mostly App Store software — no custom internal apps, no third-party installers, no scripting</li>
+      <li>Not pursuing formal compliance frameworks (SOC 2, ISO 27001, HIPAA, PCI-DSS, CIS benchmarks)</li>
+      <li>A founder or office manager without dedicated IT staff who just needs the basics to work</li>
+    </ul>
+
+    <p>If that's you, go enroll. There's no cost and the floor is higher than it used to be.</p>
+
+    <h2>What you still need a paid MDM for</h2>
+
+    <p>Here's where the free tier runs out of runway. This is the part most of the "Apple MDM is free now!" coverage glossed over, and it matters a lot if you're running anything beyond a simple shop.</p>
+
+    <h3>Managed App Configuration (AppConfig)</h3>
+
+    <p>Paid MDMs let you push an app to a device <strong>with its settings already filled in</strong> — server URL, login credentials, feature flags, the whole payload. The user opens the app and it's ready. Apple Business doesn't support <a href="https://www.appconfig.org/" target="_blank" rel="noopener noreferrer">AppConfig</a>. With the free tier, every user configures every app by hand.</p>
+
+    <p>For a 5-person office, that's an afternoon of annoyance. For 50 field techs getting a new POS app, it's a week of support tickets.</p>
+
+    <h3>Custom configuration profiles</h3>
+
+    <p><a href="https://developer.apple.com/documentation/devicemanagement" target="_blank" rel="noopener noreferrer">Apple's MDM specification</a> supports dozens of configuration payloads — VPN with specific auth types, 802.1X Wi-Fi with certificates, custom certificate trust, app-specific settings, content filters, and a pile of others. Paid MDMs expose the full specification and let you craft custom profiles. Apple Business only exposes what's in its UI. No XML profile editor. No custom payload support.</p>
+
+    <p>If you need to get Macs onto a corporate Wi-Fi that requires certificate-based 802.1X authentication, free Apple Business isn't going to cut it.</p>
+
+    <h3>Custom app deployment (non-App Store)</h3>
+
+    <p>You can push App Store apps and VPP apps. You cannot easily deploy internal enterprise apps, pkg installers, or custom scripts. Most paid MDMs make this trivial. Apple Business doesn't.</p>
+
+    <h3>OS update control</h3>
+
+    <p>Apple Business supports automatic macOS updates — and that's about it. No deferral windows for iOS or iPadOS. No staged rollouts. No ability to hold back an update across a fleet while you validate it against a business-critical app.</p>
+
+    <p>If you've ever had an iOS update break a payment terminal or a warehouse scanner app at 2 AM, you know exactly why this matters.</p>
+
+    <h3>Compliance automation and reporting</h3>
+
+    <p>SOC 2, ISO 27001, HIPAA, and CIS benchmarks all require evidence: what's deployed, on which device, with which settings, at which point in time, and what was remediated when it drifted. Dedicated enterprise MDM platforms have mature tooling for this — continuous compliance automation, drift remediation, audit-ready reporting. Apple Business does not produce audit-ready compliance reporting.</p>
+
+    <h3>Cross-platform management</h3>
+
+    <p>Apple Business manages Apple. That's it. If your environment includes Windows laptops, Android phones or tablets, Chromebooks, or purpose-built devices like Zebra scanners or Android-based POS terminals, you need a platform that speaks all of it — <a href="https://www.microsoft.com/en-us/security/business/microsoft-intune" target="_blank" rel="noopener noreferrer">Intune</a>, <a href="https://soti.net/products/soti-mobicontrol/" target="_blank" rel="noopener noreferrer">SOTI</a>, VMware Workspace ONE, or similar. Most enterprises run mixed fleets, and for them Apple Business is a complement to a UEM, not a replacement.</p>
+
+    <h3>Granular scripting and automation</h3>
+
+    <p>Enterprise-tier MDM platforms are built around the idea that power users will write scripts, extension attributes, and custom workflows to cover the long tail of weird business requirements. That extensibility is a huge part of why they dominate larger fleets. Apple Business has none of it.</p>
+
+    <h3>Hard device ceiling</h3>
+
+    <p>When Apple launched Apple Business Essentials in 2021, it was positioned for "small businesses with up to 500 employees." Apple hasn't loudly restated that ceiling for the new free platform, but the product is still clearly designed for the small-and-mid-market tier. If you're planning to manage thousands of devices, validate the scaling limits with Apple directly before committing to it as your primary MDM.</p>
+
+    <div class="pullquote">
+      <p>The free tier raises the floor for small businesses. It does not raise the ceiling for anyone managing real complexity.</p>
+    </div>
+
+    <h2>The "External Management" trick is the real story for IT pros</h2>
+
+    <p>Here's the nuance that doesn't get enough airtime: <strong>Apple Business and a third-party MDM are not mutually exclusive.</strong></p>
+
+    <p>When you set up Apple Business, you can choose <strong>External Management</strong> to point your devices at a different MDM — <a href="https://www.jamf.com/" target="_blank" rel="noopener noreferrer">Jamf</a>, <a href="https://mosyle.com/" target="_blank" rel="noopener noreferrer">Mosyle</a>, <a href="https://www.iru.com/kandji-mdm" target="_blank" rel="noopener noreferrer">Iru</a>, <a href="https://www.microsoft.com/en-us/security/business/microsoft-intune" target="_blank" rel="noopener noreferrer">Intune</a>, <a href="https://www.ninjaone.com/" target="_blank" rel="noopener noreferrer">NinjaOne</a>, whatever. Apple Business becomes your identity, procurement, and VPP licensing layer. The external MDM does the actual device management.</p>
+
+    <p>This is how most enterprises already worked with the old Apple Business Manager. The new unified platform doesn't change that workflow — it just consolidates the dashboards.</p>
+
+    <div class="callout">
+      <p><strong>Practical consequence:</strong> if you think you might outgrow free Apple Business in the next year or two, start with a third-party MDM now. Migrating later means re-enrolling every device, and that is genuinely painful. Third-party MDM pricing varies by vendor, volume, and negotiation, but entry-level plans generally land in the low single digits per device per month, scaling up from there for bundles that include endpoint security, identity, and compliance tooling. A few dollars a month per device now saves the migration pain later.</p>
+    </div>
+
+    <h2>How I'd advise a client today</h2>
+
+    <p>Forget vendor names for a minute. The right platform falls out of four questions:</p>
+
+    <p><strong>1. Fleet composition.</strong> Apple-only, or mixed with Windows, Android, Chromebooks, or purpose-built hardware? A pure-Apple fleet has very different options than a mixed environment where you need a single pane of glass.</p>
+
+    <p><strong>2. Compliance posture.</strong> Are you pursuing or maintaining SOC 2, ISO 27001, HIPAA, PCI-DSS, or CIS benchmarks? If yes, audit-ready reporting and continuous compliance automation become table stakes, and the free tier won't get you there.</p>
+
+    <p><strong>3. App complexity.</strong> Are your users running straight App Store software, or do you have internal enterprise apps, pkg installers, custom scripts, or apps that need pre-configured settings pushed (<a href="https://www.appconfig.org/" target="_blank" rel="noopener noreferrer">AppConfig</a>)? The more custom your app story, the more you need a real MDM.</p>
+
+    <p><strong>4. Team capacity.</strong> Do you have a dedicated IT admin who can write scripts and build workflows, or a lean team (or solo founder) who needs the platform to do most of the thinking? Heavier platforms reward expertise; lighter platforms trade depth for speed.</p>
+
+    <p>Map those four answers against what we just covered and the shortlist usually narrows itself to two or three options. From there, it's about getting quotes, running trials, and testing against your actual use cases — list prices and negotiated prices are often different animals, especially at multi-year terms.</p>
+
+    <p>If you want a second set of eyes on that evaluation, that's exactly the kind of vendor-agnostic advisory work I do.</p>
+
+    <h2>If you're migrating from Apple Business Essentials</h2>
+
+    <p>Existing Essentials, Manager, and Connect customers were automatically migrated to the unified <a href="https://business.apple.com" target="_blank" rel="noopener noreferrer">Apple Business</a> on April 14. Your data came with you. A few things to check in the next week or two:</p>
+
+    <ol>
+      <li><strong>Confirm your billing stopped</strong> for the old Essentials subscription. Device management is free now; you shouldn't see new per-device charges.</li>
+      <li><strong>Review your Blueprints.</strong> Collections from Essentials should have migrated, but audit them.</li>
+      <li><strong>Check iOS 26 / iPadOS 26 / macOS 26 requirements</strong> if you want the new email, calendar, and directory features. Older OS versions still work for core MDM.</li>
+      <li><strong>Decide on External Management</strong> if you're considering adding a third-party MDM later. Setting it up before you have 100 devices enrolled is much easier than after.</li>
+    </ol>
+
+    <h2>Bottom line</h2>
+
+    <p>Apple made MDM free because they want every business device to be managed, and cost was the friction point for small businesses. That's a good thing for the ecosystem. If you're small, Apple-only, and not chasing compliance, this is a straight upgrade over doing nothing — and over a lot of what you might have been paying for before.</p>
+
+    <p>But "free" doesn't mean "sufficient" for everyone. <a href="https://www.appconfig.org/" target="_blank" rel="noopener noreferrer">AppConfig</a>, custom profiles, OS update control, custom app deployment, and cross-platform management are the boundary lines. If you cross any of them, you still want a real MDM — and Apple's own architecture (External Management) assumes you might.</p>
+
+    <p>If you're in the Sacramento area and you're trying to figure out which side of that line your business falls on, that's exactly the kind of evaluation I help with. A 30-minute conversation can save a lot of re-enrollment pain later.</p>
+
+    <div class="sources">
+      <h3>Further reading</h3>
+      <ul>
+        <li><a href="https://www.apple.com/newsroom/2026/03/introducing-apple-business-a-new-all-in-one-platform-for-businesses-of-all-sizes/" target="_blank" rel="noopener noreferrer">Introducing Apple Business — Apple Newsroom</a></li>
+        <li><a href="https://business.apple.com" target="_blank" rel="noopener noreferrer">Apple Business — business.apple.com</a></li>
+        <li><a href="https://developer.apple.com/documentation/devicemanagement" target="_blank" rel="noopener noreferrer">Apple Device Management — Developer Documentation</a></li>
+        <li><a href="https://support.apple.com/en-us/102073" target="_blank" rel="noopener noreferrer">Apple Volume Purchase Program (VPP) — Apple Support</a></li>
+        <li><a href="https://www.appconfig.org/" target="_blank" rel="noopener noreferrer">AppConfig Community — Managed App Configuration standard</a></li>
+        <li><a href="https://www.jamf.com/" target="_blank" rel="noopener noreferrer">Jamf — Apple enterprise management</a></li>
+        <li><a href="https://mosyle.com/" target="_blank" rel="noopener noreferrer">Mosyle — Apple MDM for business and education</a></li>
+        <li><a href="https://www.iru.com/kandji-mdm" target="_blank" rel="noopener noreferrer">Iru (formerly Kandji) — Apple device management</a></li>
+        <li><a href="https://www.microsoft.com/en-us/security/business/microsoft-intune" target="_blank" rel="noopener noreferrer">Microsoft Intune — unified endpoint management</a></li>
+        <li><a href="https://soti.net/products/soti-mobicontrol/" target="_blank" rel="noopener noreferrer">SOTI MobiControl — enterprise mobility management</a></li>
+        <li><a href="https://addigy.com/" target="_blank" rel="noopener noreferrer">Addigy — MSP-focused Apple device management</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-line">Will Worland is the founder of Oak &amp; Ash Technology, a Sacramento-based IT consultancy focused on mobility, UEM, and endpoint automation. He has 15+ years of experience in enterprise device management across Apple Business, Jamf, Mosyle, Intune, SOTI, Workspace ONE, and more.</div>
+  </div>
+</div>`,
+  },
+  {
+    slug: "15-years-switching-mdm-platforms",
+    title: "What 15 years of switching MDM platforms actually taught me.",
+    date: "2026-04-14",
+    summary: "I started in this industry before most of today's platforms existed. Here's what I got wrong, what I eventually got right, and the pattern I wish I'd seen sooner.",
+    tags: ["MDM", "UEM", "Career", "Lessons"],
+    image: "/caveman-mobility.png",
+    imageAlt: "Cave people gathered around glowing mobile device interfaces painted on a cave wall — a metaphor for how long humans have been figuring out device management",
+    content: "",
+    contentHtml: `<style>
+  .post-body p { font-size: 16px; line-height: 1.8; margin: 0 0 1.4rem; }
+  .post-body h2 { font-size: 18px; font-weight: 500; margin: 2.5rem 0 0.75rem; }
+  .post-body a { text-decoration: none; border-bottom: 1px solid currentColor; opacity: 0.85; }
+  .post-body a:hover { opacity: 1; }
+  .post-body figure { margin: 2rem 0; }
+  .post-body img { display: block; width: 100%; border-radius: 14px; border: 1px solid rgba(15, 23, 42, 0.08); background: #fff; }
+  .post-body figcaption { font-size: 13px; line-height: 1.7; margin-top: 0.65rem; opacity: 0.7; }
+  .post-body .pullquote { border-left: 3px solid currentColor; margin: 2rem 0; padding: 0.5rem 0 0.5rem 1.25rem; opacity: 0.85; }
+  .post-body .pullquote p { font-size: 19px; line-height: 1.55; font-style: italic; margin: 0; }
+  .post-body .callout { border: 1px solid; border-radius: 8px; padding: 1rem 1.25rem; margin: 1.75rem 0; opacity: 0.9; }
+  .post-body .callout p { font-size: 14px; line-height: 1.7; margin: 0 0 0.5rem; }
+  .post-body .callout p:last-child { margin: 0; }
+  .post-body .footer-line { margin-top: 3rem; padding-top: 1.25rem; border-top: 1px solid; font-size: 13px; opacity: 0.6; }
+</style>
+<div class="post-body">
+  <div class="body">
+    <p>I was early. Not "early adopter reading the blogs" early — early in the sense that I was working for one of the first companies in the enterprise mobility management service provider space when the platforms we now take for granted were still figuring out what they were.</p>
+
+    <p>The company was Enterprise Mobile. We eventually became Intermec, and then Honeywell Scanning and Mobility. But in those early days, we were sitting across from enterprise customers who needed their mobile device fleets managed, and we were picking up whatever tools existed to do it. SOTI Pocket Controller. BlackBerry BES. Afaria. MobileIron. Wavelink Avalanche for the rugged frontline device programs. And a Wi-Fi network management platform called Wandering WiFi — which, if that name doesn't ring a bell, you probably know it better by what it became: AirWatch. We were running it before it pivoted to MDM, before it became the market leader, and well before VMware wrote a $1.54 billion check to acquire it in 2014. We weren't evaluating platforms from a position of expertise — we were building that expertise in real time, on real customer deployments, often with software that was still finding its footing.</p>
+
+    <p>It was, in retrospect, one of the best possible educations in this industry. And the most important thing it taught me took years to fully understand.</p>
+
+    <h2>The pattern nobody tells you about</h2>
+
+    <p>Early on, I believed what the vendors believed about themselves. Each platform had a different pitch. Different vocabulary. Different UI paradigms. Different certifications to earn and feature matrices to memorize. When you're new to the industry and the software is new too, that surface-level difference feels significant. You start to develop platform loyalty the same way people develop loyalty to operating systems — through familiarity, through investment, through the sunk cost of everything you've already learned.</p>
+
+    <p>Then you work with enough customers running different platforms and something starts to bother you. The outcomes are the same. The device gets enrolled. The policy gets applied. The app gets distributed. The compliance report gets generated. The customer on AirWatch and the customer on MobileIron and the customer on SOTI are all getting fundamentally the same result — sometimes paying different prices, sometimes getting a few additional features, sometimes getting a slicker interface — but landing in the same place.</p>
+
+    <p>At first I chalked it up to coincidence. Then I chalked it up to the customers having similar requirements. It took a while longer to understand what was actually happening: the platforms weren't differentiated at the level that mattered. They were all sitting on top of the same OS APIs, the same device management protocols, the same manufacturer-defined management surfaces. Wavelink Avalanche was managing the same Zebra and Honeywell rugged devices as SOTI — different console, same underlying device APIs. Wandering WiFi pivoted to MDM and became AirWatch not because it invented new management capabilities, but because the smartphone boom created demand for the same model applied to a new device category. The logo on the console was the variable. The protocol underneath was the constant.</p>
+
+    <figure>
+      <img src="/history-mdm.jpg" alt="Mobile device evolution timeline showing the progression from feature phones through smartphones, tablets, laptops and IoT devices" />
+      <figcaption>Every generation, every form factor — different logos, same underlying protocols. The console changed. The protocol didn't.</figcaption>
+    </figure>
+
+    <div class="pullquote">
+      <p>The device didn't care which platform enrolled it. The OS was always the authority. The MDM vendor was always the intermediary.</p>
+    </div>
+
+    <p>Once you see that, you can't unsee it. Every new platform I sat down in front of after that realization felt familiar within hours — not because the UI was the same, but because the underlying model was. Same enrollment flow, different wizard. Same profile schema, different editor. Same compliance engine, different dashboard. I wasn't learning a new platform. I was learning a new interface for the same model.</p>
+
+    <h2>The mistake hubris made</h2>
+
+    <p>Understanding the pattern made me better at the work. It also, for a period, made me worse.</p>
+
+    <p>When you feel like you understand something deeply — when you've seen enough deployments across enough platforms that the fundamentals feel obvious — there's a temptation to push against the constraints rather than work within them. To assume that what the platform says is a limitation is actually just a design choice that can be worked around with enough creativity.</p>
+
+    <p>I ran into this head-on while building MobiLauncher at Enterprise Mobility. MobiLauncher was a custom lockdown interface — a web app running inside an Android WebView within a SOTI MobiControl Lockdown Profile. The project was genuinely exciting. We were pushing into territory the platform wasn't explicitly designed for, using the JavaScript Agent API and device Custom Attributes to do things that required real ingenuity to make work.</p>
+
+    <div class="shot-grid" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0;">
+      <figure style="margin: 0;">
+        <img src="/tc75.jpg" alt="Zebra TC75 rugged Android handheld — the kind of device MobiLauncher was built to run on" style="border-radius: 14px; border: 1px solid rgba(15,23,42,0.08); background: #fff;" />
+        <figcaption style="font-size: 13px; line-height: 1.7; margin-top: 0.65rem; opacity: 0.7;">Zebra TC75 — the handheld fleet MobiLauncher was designed for. No DevTools, no hot reload.</figcaption>
+      </figure>
+      <figure style="margin: 0;">
+        <img src="/et56.jpg" alt="Zebra ET56 rugged Android tablet — enterprise device running MobiLauncher in a SOTI MobiControl lockdown profile" style="border-radius: 14px; border: 1px solid rgba(15,23,42,0.08); background: #fff;" />
+        <figcaption style="font-size: 13px; line-height: 1.7; margin-top: 0.65rem; opacity: 0.7;">Zebra ET56 tablet variant. If it doesn't work on this hardware, it doesn't ship.</figcaption>
+      </figure>
+    </div>
+
+    <p>The problem was that I got ambitious faster than I got stable. The toolset I was allowed to work with was constrained — intentionally, for good operational reasons. But I was committed to showing what was possible, and that commitment started driving decisions that should have been driven by what was reliable. I shipped releases that were technically impressive and operationally brittle. Features that worked in testing and misbehaved in production. And eventually I had to roll back to a more stable build with less functionality, swallow the lesson, and rebuild from a more honest foundation.</p>
+
+    <p>It wasn't a catastrophic failure. But it was a humbling one. Because the thing I'd understood intellectually for years — that the platform has constraints for a reason, that the protocol defines the boundary of what's safe to build against — I had stopped actually believing in practice. I'd let the excitement of the problem override the discipline of the craft.</p>
+
+    <div class="pullquote">
+      <p>The platform doesn't care how clever you are. The protocol has limits. Working with them is the skill. Working around them is the warning sign.</p>
+    </div>
+
+    <h2>What the pattern actually gives you</h2>
+
+    <p>Here's what fifteen years and more platform migrations than I can accurately count has left me with:</p>
+
+    <p><strong>Migrations are less scary than they look.</strong> When you understand that you're not re-learning device management — you're re-enrolling devices into a different implementation of the same model — the anxiety about switching platforms deflates significantly. The hard part of a migration is almost never the platform itself. It's the automation you've built on top of vendor-proprietary APIs, the tribal knowledge baked into runbooks that nobody updated, the integrations that assumed a specific implementation detail. Know where your lock-in actually lives before you sign anything.</p>
+
+    <p><strong>Platform loyalty is a trap.</strong> I've watched good engineers spend enormous energy defending a platform choice that was made three years ago under different constraints, long past the point where a different tool would have served them better. The platform is a vehicle, not an identity. The expertise you're building is in the underlying discipline — endpoint management, policy design, enrollment architecture, automation — not in one vendor's interpretation of it.</p>
+
+    <figure>
+      <img src="/dinosaur-code.png" alt="A cartoon dinosaur in a tie, typing at an old desktop computer in an office — a visual metaphor for clinging to outdated tools long past their usefulness" />
+      <figcaption>Still on the same MDM you picked in 2019 because you know it well? That's not expertise. That's familiarity.</figcaption>
+    </figure>
+
+    <p><strong>Constraints are information.</strong> Some of the worst decisions I've made in this industry came from treating a platform constraint as a problem to be solved rather than a signal to be understood. Why does this API not expose that capability? Why does the platform not support this workflow natively? Sometimes the answer is "the vendor hasn't built it yet." But sometimes the answer is "the OS doesn't support it safely" or "customers who tried this pattern got burned." The constraint knows something. Ask what before you work around it.</p>
+
+    <p><strong>The early exposure was the gift.</strong> Being in the room when these platforms were young — running Wandering WiFi before it became AirWatch, managing rugged Zebra fleets through Wavelink Avalanche before the Android Enterprise era simplified everything, watching the industry settle on patterns that are now considered obvious — gave me a reference point that's hard to acquire any other way. I didn't just learn how MDM works. I learned <em>why</em> it works the way it does, which is a different and more durable kind of knowledge.</p>
+
+    <h2>The thing I'd tell someone starting out today</h2>
+
+    <p>Don't get attached to the platform. Get attached to the protocol. Learn how Apple's MDM spec actually works — not just how Jamf exposes it, but what APNs is doing, what a mobileconfig actually contains, what the enrollment handshake looks like at the wire level. Learn what Android Management API defines and what it doesn't. Understand where the OS ends and the vendor begins.</p>
+
+    <p>Do that, and every platform you'll ever sit down in front of becomes familiar within a day. New logo, same model. And when the inevitable migration comes — because it always does — you'll be the calmest person in the room. Not because you've done it before, but because you understand what's actually changing and what isn't.</p>
+
+    <p>The platform is rented. The understanding is yours.</p>
+
+    <div class="footer-line">Will Worland is the founder of Oak &amp; Ash Technology, a Sacramento-based IT consultancy focused on mobility, UEM, and endpoint automation. He has 15+ years of experience in enterprise device management across Wandering WiFi (now AirWatch/Workspace ONE), SOTI, BlackBerry, Afaria, MobileIron, Wavelink Avalanche, Jamf, Intune, and more.</div>
+  </div>
+</div>`,
+  },
+  {
     slug: "building-mobilauncher-kiosk-lessons",
     title: "Building a Kiosk App That Doesn't Hate You: Lessons from MobiLauncher",
     date: "2026-04-01",

@@ -1,6 +1,7 @@
 import { Link as RouterLink, useParams } from "react-router-dom";
-import { Box, Button, Chip, Link, Stack, Typography } from "@mui/material";
+import { Box, Button, Chip, Divider, Link, Stack, Typography } from "@mui/material";
 import { posts } from "../data/posts";
+import GiscusComments from "../components/GiscusComments";
 
 export default function BlogPost() {
   const { slug } = useParams();
@@ -81,6 +82,9 @@ export default function BlogPost() {
       <Button component={RouterLink} to="/blog" variant="outlined" sx={{ alignSelf: "flex-start" }}>
         Back to Blog
       </Button>
+
+      <Divider />
+      <GiscusComments />
     </Stack>
   );
 }
