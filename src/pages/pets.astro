@@ -1,0 +1,206 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Icon from "~/components/Icon.astro";
+
+const contactEmail = "me@willworland.com";
+
+type Pet = {
+  id: string;
+  name: string;
+  breed: string;
+  cover: string;
+  images: string[];
+  video?: string;
+};
+
+const pets: Pet[] = [
+  {
+    id: "bender",
+    name: "Bender",
+    breed: "Apricot Standard Poodle",
+    cover: "/bender/bender.jpeg",
+    images: ["/bender/bender.jpeg"],
+    video: "/bender/bender.mp4",
+  },
+  {
+    id: "cosmo",
+    name: "Cosmo",
+    breed: "Black Miniature Poodle",
+    cover: "/cosmo/cosmo1.png",
+    images: ["/cosmo/cosmo1.png", "/cosmo/cosmo2.png", "/cosmo/cosmo3.png"],
+  },
+  {
+    id: "mister",
+    name: "Mister",
+    breed: "Black/Grey Short Hair Tabby",
+    cover: "/mister/mister1.png",
+    images: ["/mister/mister1.png", "/mister/mister2.png", "/mister/mister3.png"],
+  },
+];
+
+const mailto = (name: string) => {
+  const subject = encodeURIComponent("Found your pet — " + name);
+  const body = encodeURIComponent(
+    "Hi Will,\n\nI think I found " +
+      name +
+      ". Here's where they are and how to reach me:\n\nLocation: \nMy name: \nMy phone: \n\n",
+  );
+  return "mailto:" + contactEmail + "?subject=" + subject + "&body=" + body;
+};
+---
+
+<BaseLayout
+  title="Pets"
+  description="Meet the family pets — Bender, Cosmo, and Mister. If found, please get in touch."
+>
+  <div class="mx-auto max-w-5xl px-4 py-10 sm:px-6 sm:py-14">
+    <header class="mb-10 space-y-3">
+      <p class="font-mono text-xs uppercase tracking-wider text-ink-500 dark:text-ink-400">
+        /pets
+      </p>
+      <h1 class="text-3xl font-bold tracking-tight text-ink-900 sm:text-4xl dark:text-ink-50">
+        The pets
+      </h1>
+      <p class="text-base leading-relaxed text-ink-600 dark:text-ink-300">
+        Bender, Cosmo, and Mister. If you've found one of them, tap their card
+        for photos and use the <strong>If found, contact</strong> button to reach
+        me straight away.
+      </p>
+    </header>
+
+    <div class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {
+        pets.map((pet) => (
+          <article class="group flex flex-col overflow-hidden rounded-lg border border-ink-200 bg-white dark:border-ink-800 dark:bg-ink-900/40">
+            <button
+              type="button"
+              class="pet-open relative block aspect-[4/3] w-full overflow-hidden bg-ink-100 dark:bg-ink-800"
+              data-pet={pet.id}
+              aria-label={`View photos of ${pet.name}`}
+            >
+              <img
+                src={pet.cover}
+                alt={`${pet.name} — ${pet.breed}`}
+                loading="lazy"
+                class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+              />
+              <span class="absolute bottom-2 right-2 rounded-full bg-ink-950/70 px-2 py-1 text-xs font-medium text-white backdrop-blur">
+                {pet.video ? "Photos + video" : `${pet.images.length} photos`}
+              </span>
+            </button>
+
+            <div class="flex flex-1 flex-col gap-3 p-4">
+              <div>
+                <h2 class="text-lg font-semibold text-ink-900 dark:text-ink-50">
+                  {pet.name}
+                </h2>
+                <p class="text-sm text-ink-600 dark:text-ink-300">{pet.breed}</p>
+              </div>
+
+              <a
+                href={mailto(pet.name)}
+                class="mt-auto inline-flex items-center justify-center gap-2 rounded-md bg-accent-600 px-3 py-2 text-sm font-medium text-white transition-colors hover:bg-accent-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-ink-900"
+              >
+                <Icon name="email" class="h-4 w-4" />
+                If found, contact
+              </a>
+            </div>
+          </article>
+        ))
+      }
+    </div>
+  </div>
+
+  <!-- Dialogs -->
+  {
+    pets.map((pet) => (
+      <dialog
+        id={`pet-dialog-${pet.id}`}
+        class="m-auto w-[min(48rem,92vw)] rounded-lg border border-ink-200 bg-white p-0 text-ink-900 backdrop:bg-ink-950/60 backdrop:backdrop-blur-sm dark:border-ink-800 dark:bg-ink-950 dark:text-ink-50"
+      >
+        <div class="flex items-center justify-between gap-4 border-b border-ink-200 px-5 py-4 dark:border-ink-800">
+          <div>
+            <h2 class="text-lg font-semibold">{pet.name}</h2>
+            <p class="text-sm text-ink-600 dark:text-ink-300">{pet.breed}</p>
+          </div>
+          <button
+            type="button"
+            class="pet-close inline-flex h-9 w-9 items-center justify-center rounded-md text-ink-600 transition-colors hover:bg-ink-100 hover:text-ink-900 dark:text-ink-300 dark:hover:bg-ink-800 dark:hover:text-ink-100"
+            data-pet={pet.id}
+            aria-label="Close"
+          >
+            <Icon name="close" />
+          </button>
+        </div>
+
+        <div class="max-h-[70vh] overflow-y-auto p-5">
+          <div class="grid grid-cols-1 gap-4 sm:grid-cols-2">
+            {pet.video && (
+              <video
+                src={pet.video}
+                controls
+                playsinline
+                preload="metadata"
+                class="col-span-full w-full rounded-md bg-black"
+              />
+            )}
+            {pet.images.map((src, i) => (
+              <img
+                src={src}
+                alt={`${pet.name} — photo ${i + 1}`}
+                loading="lazy"
+                class="w-full rounded-md object-cover"
+              />
+            ))}
+          </div>
+        </div>
+
+        <div class="border-t border-ink-200 px-5 py-4 dark:border-ink-800">
+          <a
+            href={mailto(pet.name)}
+            class="inline-flex w-full items-center justify-center gap-2 rounded-md bg-accent-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-accent-700"
+          >
+            <Icon name="email" class="h-4 w-4" />
+            If found, contact me about {pet.name}
+          </a>
+        </div>
+      </dialog>
+    ))
+  }
+
+  <script is:inline>
+    (() => {
+      const dialogFor = (id) => document.getElementById(`pet-dialog-${id}`);
+
+      document.querySelectorAll(".pet-open").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const d = dialogFor(btn.getAttribute("data-pet"));
+          if (d && typeof d.showModal === "function") d.showModal();
+        });
+      });
+
+      document.querySelectorAll(".pet-close").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const d = dialogFor(btn.getAttribute("data-pet"));
+          if (d) {
+            d.querySelectorAll("video").forEach((v) => v.pause());
+            d.close();
+          }
+        });
+      });
+
+      // Click on the backdrop closes the dialog
+      document.querySelectorAll("dialog[id^='pet-dialog-']").forEach((d) => {
+        d.addEventListener("click", (e) => {
+          if (e.target === d) {
+            d.querySelectorAll("video").forEach((v) => v.pause());
+            d.close();
+          }
+        });
+        d.addEventListener("close", () => {
+          d.querySelectorAll("video").forEach((v) => v.pause());
+        });
+      });
+    })();
+  </script>
+</BaseLayout>
